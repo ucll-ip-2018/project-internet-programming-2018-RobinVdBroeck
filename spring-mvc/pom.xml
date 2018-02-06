@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.ucll</groupId>
@@ -13,9 +14,9 @@
         <javaee.version>7.0</javaee.version>
         <jstl.version>1.2</jstl.version>
         <maven.war.version>2.3</maven.war.version>
-        <spring.version>4.3.6.RELEASE</spring.version>
+        <spring.version>5.0.3.RELEASE</spring.version>
     </properties>
-    
+
     <dependencies>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -37,6 +38,7 @@
 
     <build>
         <finalName>myfinalname</finalName>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
