@@ -30,7 +30,7 @@ public class SkillDatabaseStubTests {
         database.add(skill);
 
         assertThatExceptionOfType(DatabaseException.class).isThrownBy(() -> database.add(skill))
-                .withMessage("Skill allready exists");
+                .withMessage("Skill already exists");
     }
 
     @Test

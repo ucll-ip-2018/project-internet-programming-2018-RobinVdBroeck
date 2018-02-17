@@ -9,8 +9,8 @@ class SkillDatabaseStub implements SkillDatabase {
 
     @Override
     public void add(Skill skill) {
-        if(skills.containsKey(skill.getName())) {
-            throw new DatabaseException("Skill allready exists");
+        if (skills.containsKey(skill.getName())) {
+            throw new DatabaseException("Skill already exists");
         }
         skills.put(skill.getName(), skill);
     }
