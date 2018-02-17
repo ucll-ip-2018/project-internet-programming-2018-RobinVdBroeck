@@ -1,16 +1,21 @@
 package org.ucll.runetracker.domain;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class UserTests {
     @Test
     public void testGetterAndSetterForEmail() {
         var user = new User(null);
-        user.setEmail("test@localhost.dev");
-        Assert.assertNotNull(user.getEmail());
+        var email = "test@localhost.dev";
+
+        user.setEmail(email);
+
+        assertThat(user.getEmail()).matches(email);
     }
 
     @Test
@@ -20,7 +25,7 @@ public class UserTests {
 
         user.addDisplayName(robin);
 
-        assert user.getDisplayNames().contains(robin);
+        assertThat(user.getDisplayNames()).contains(robin);
     }
 
     @Test
@@ -32,6 +37,6 @@ public class UserTests {
         user.addDisplayName(zezima);
         user.addDisplayName(suomi);
 
-        Assert.assertEquals(zezima, user.getCurrentDisplayName().get());
+        assertThat(user.getCurrentDisplayName()).contains(zezima);
     }
 }
