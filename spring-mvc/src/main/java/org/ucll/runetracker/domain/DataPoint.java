@@ -8,6 +8,13 @@ public class DataPoint {
     private int experience;
     private int rank;
 
+    public DataPoint(LocalDateTime dateTime, User user, int exp, int rank) {
+        setDateTime(dateTime);
+        setUser(user);
+        setExperience(exp);
+        setRank(rank);
+    }
+
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
