@@ -1,7 +1,7 @@
-package org.ucll.runetracker.database;
+package be.ucll.runetracker.database;
 
 import org.junit.Test;
-import org.ucll.runetracker.domain.User;
+import be.ucll.runetracker.domain.User;
 
 import java.util.ArrayList;
 

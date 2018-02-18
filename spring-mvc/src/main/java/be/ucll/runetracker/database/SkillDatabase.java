@@ -1,6 +1,6 @@
-package org.ucll.runetracker.database;
+package be.ucll.runetracker.database;
 
-import org.ucll.runetracker.domain.Skill;
+import be.ucll.runetracker.domain.Skill;
 
 import java.util.Collection;
 import java.util.List;
