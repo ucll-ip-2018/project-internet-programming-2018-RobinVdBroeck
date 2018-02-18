@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 public class SkillDatabaseStubTests {
 
     @Test
-    public void testAddAddsASkillToTheDabaseIfItDoesNotYetExist() {
+    public void testAddAddsASkillToTheDatabaseIfItDoesNotYetExist() {
         var database = new SkillDatabaseStub();
         var skill = mock(Skill.class);
 
@@ -63,7 +63,7 @@ public class SkillDatabaseStubTests {
         // Create the skills and add them to the database
         var skills = new ArrayList<Skill>();
         final var iterations = 500;
-        for(var i = 0; i < iterations; i++) {
+        for (var i = 0; i < iterations; i++) {
             var skill = mock(Skill.class);
             when(skill.getName()).thenReturn(String.valueOf(i));
             skills.add(skill);

@@ -3,18 +3,27 @@ package be.ucll.runetracker.domain;
 import java.time.LocalDateTime;
 
 public class DataPoint {
+    private int id;
     private LocalDateTime dateTime;
     private User user;
     private int experience;
     private int rank;
 
-    public DataPoint(LocalDateTime dateTime, User user, int exp, int rank) {
+    public DataPoint(int id, LocalDateTime dateTime, User user, int exp, int rank) {
+        setId(id);
         setDateTime(dateTime);
         setUser(user);
         setExperience(exp);
         setRank(rank);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
@@ -46,4 +55,5 @@ public class DataPoint {
     public void setUser(User user) {
         this.user = user;
     }
+
 }

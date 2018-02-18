@@ -10,9 +10,9 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class UserDatabaseStubTest {
+public class UserDatabaseStubTests {
     @Test
-    public void testAddAddsAuserToTheDabaseIfItDoesNotYetExist() {
+    public void testAddAddsAUserToTheDatabaseIfItDoesNotYetExist() {
         var database = new UserDatabaseStub();
         var user = mock(User.class);
 
@@ -22,7 +22,7 @@ public class UserDatabaseStubTest {
     }
 
     @Test
-    public void testsAddThrowsExceptionWhenuserAlreadyExists() {
+    public void testsAddThrowsExceptionWhenUserAlreadyExists() {
         var database = new UserDatabaseStub();
         var user = mock(User.class);
 
@@ -33,7 +33,7 @@ public class UserDatabaseStubTest {
     }
 
     @Test
-    public void testDeleteDeletesTheuser() {
+    public void testDeleteDeletesTheUser() {
         var database = new UserDatabaseStub();
         var user = mock(User.class);
 
@@ -44,7 +44,7 @@ public class UserDatabaseStubTest {
     }
 
     @Test
-    public void testGetuserReturnsTheCorrectuserObject() {
+    public void testGetUserReturnsTheCorrectUserObject() {
         var database = new UserDatabaseStub();
 
         var robin = mock(User.class);
@@ -62,10 +62,9 @@ public class UserDatabaseStubTest {
     public void testAddAllAddsThemAllToTheDatabase() {
         var database = new UserDatabaseStub();
 
-        // Create the users and add them to the database
         var users = new ArrayList<User>();
         final var iterations = 500;
-        for(var i = 0; i < iterations; i++) {
+        for (var i = 0; i < iterations; i++) {
             var user = mock(User.class);
             when(user.getEmail()).thenReturn(i + "@localhost");
             users.add(user);
