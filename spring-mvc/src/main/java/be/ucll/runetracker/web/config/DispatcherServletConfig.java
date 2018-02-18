@@ -23,7 +23,7 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
     public InternalResourceViewResolver getViewResolver() {
         var viewResolver = new InternalResourceViewResolver();
         viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/jsp/");
+        viewResolver.setPrefix("/WEB-INF/templates/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
