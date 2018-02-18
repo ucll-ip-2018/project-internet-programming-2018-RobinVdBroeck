@@ -4,7 +4,7 @@ import be.ucll.runetracker.domain.User;
 
 import java.util.*;
 
-public class UserDatabaseStub implements UserDatabase {
+class UserDatabaseStub implements UserDatabase {
     private Map<String, User> users = new HashMap<>();
 
     @Override
