@@ -2,6 +2,7 @@ package be.ucll.runetracker.database;
 
 import be.ucll.runetracker.domain.DataPoint;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 class DataPointDatabaseStub implements DataPointDatabase {
@@ -9,11 +10,19 @@ class DataPointDatabaseStub implements DataPointDatabase {
 
     DataPointDatabaseStub() {
         dataPoints = new HashMap<>();
+        var sample = new DataPoint(
+                0,
+                LocalDateTime.now(),
+                null,
+                0,
+                0
+        );
+        add(sample);
     }
 
     @Override
     public void add(DataPoint dataPoint) {
-        if(dataPoints.containsKey(dataPoint.getId())) {
+        if (dataPoints.containsKey(dataPoint.getId())) {
             throw new DatabaseException("DataPoint already exists");
         }
 

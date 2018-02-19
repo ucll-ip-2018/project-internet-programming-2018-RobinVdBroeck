@@ -1,8 +1,10 @@
 package be.ucll.runetracker.domain;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class DataPoint {
+    private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");
     private int id;
     private LocalDateTime dateTime;
     private User user;
@@ -30,6 +32,10 @@ public class DataPoint {
 
     public LocalDateTime getDateTime() {
         return this.dateTime;
+    }
+
+    public String getFormatedDateTime() {
+        return getDateTime().format(dateTimeFormatter);
     }
 
     public void setExperience(int experience) {
