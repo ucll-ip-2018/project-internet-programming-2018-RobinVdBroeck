@@ -7,7 +7,7 @@ import be.ucll.runetracker.domain.DataPoint;
 import java.util.List;
 
 public class DataPointService {
-    DataPointDatabase dataPointDatabase;
+    private DataPointDatabase dataPointDatabase;
 
     public DataPointService() {
         dataPointDatabase = DataPointDatabaseFactory.create();
