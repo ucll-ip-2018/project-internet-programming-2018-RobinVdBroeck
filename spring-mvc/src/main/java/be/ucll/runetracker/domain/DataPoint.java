@@ -5,11 +5,14 @@ import java.time.format.DateTimeFormatter;
 
 public class DataPoint {
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");
-    private int id;
+    private Integer id;
     private LocalDateTime dateTime;
     private User user;
     private int experience;
     private int rank;
+
+    public DataPoint() {
+    }
 
     public DataPoint(int id, LocalDateTime dateTime, User user, int exp, int rank) {
         setId(id);
@@ -19,13 +22,14 @@ public class DataPoint {
         setRank(rank);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
+
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }

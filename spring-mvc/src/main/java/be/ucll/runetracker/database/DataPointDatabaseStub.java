@@ -4,12 +4,16 @@ import be.ucll.runetracker.domain.DataPoint;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class DataPointDatabaseStub implements DataPointDatabase {
     private Map<Integer, DataPoint> dataPoints;
+    private final AtomicInteger counter;
+
 
     DataPointDatabaseStub() {
         dataPoints = new HashMap<>();
+        counter = new AtomicInteger();
         var sample = new DataPoint(
                 0,
                 LocalDateTime.now(),
@@ -22,6 +26,10 @@ class DataPointDatabaseStub implements DataPointDatabase {
 
     @Override
     public void add(DataPoint dataPoint) {
+        if (dataPoint.getId() == null) {
+            dataPoint.setId(counter.getAndIncrement());
+        }
+
         if (dataPoints.containsKey(dataPoint.getId())) {
             throw new DatabaseException("DataPoint already exists");
         }
