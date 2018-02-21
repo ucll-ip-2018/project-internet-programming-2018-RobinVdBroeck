@@ -7,6 +7,10 @@ import java.util.*;
 class SkillDatabaseStub implements SkillDatabase {
     private Map<String, Skill> skills = new HashMap<>();
 
+    SkillDatabaseStub() {
+
+    }
+
     @Override
     public void add(Skill skill) {
         if (skills.containsKey(skill.getName())) {

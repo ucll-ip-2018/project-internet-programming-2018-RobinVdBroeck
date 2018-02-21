@@ -1,6 +1,7 @@
 package be.ucll.runetracker.web.config;
 
-import be.ucll.runetracker.DataPointService;
+import be.ucll.runetracker.database.DatabaseType;
+import be.ucll.runetracker.domain.DataPointService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -8,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
 public class ApplicationConfig {
     @Bean
     public DataPointService dataPointService() {
-        return new DataPointService();
+        return new DataPointService(DatabaseType.STUB);
     }
 }

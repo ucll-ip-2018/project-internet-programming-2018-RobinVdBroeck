@@ -7,9 +7,12 @@ import java.util.*;
 class UserDatabaseStub implements UserDatabase {
     private Map<String, User> users = new HashMap<>();
 
+    UserDatabaseStub() {
+    }
+
     @Override
     public void add(User user) {
-        if(users.containsKey(user.getEmail())) {
+        if (users.containsKey(user.getEmail())) {
             throw new DatabaseException("User already exists");
         }
         users.put(user.getEmail(), user);
@@ -23,7 +26,7 @@ class UserDatabaseStub implements UserDatabase {
     @Override
     public void delete(User user) {
         users.remove(user.getEmail());
-   }
+    }
 
     @Override
     public Optional<User> get(String email) {

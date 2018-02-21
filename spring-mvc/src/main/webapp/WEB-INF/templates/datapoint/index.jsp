@@ -1,6 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%@include file="../parts/header.jsp" %>
+<%@include file="../../parts/header.jsp" %>
 <div class="container">
     <h1>Data points</h1>
 
@@ -29,4 +29,4 @@
 
     <a href="#">Add a datapoint</a>
 </div>
-<%@include file="../parts/footer.jsp" %>
+<%@include file="../../parts/footer.jsp" %>
