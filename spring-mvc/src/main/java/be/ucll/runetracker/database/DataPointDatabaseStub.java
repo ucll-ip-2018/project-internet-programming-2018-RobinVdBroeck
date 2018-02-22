@@ -14,14 +14,6 @@ class DataPointDatabaseStub implements DataPointDatabase {
     DataPointDatabaseStub() {
         dataPoints = new HashMap<>();
         counter = new AtomicInteger();
-        var sample = new DataPoint(
-                0,
-                LocalDateTime.now(),
-                null,
-                0,
-                0
-        );
-        add(sample);
     }
 
     @Override
@@ -31,7 +23,7 @@ class DataPointDatabaseStub implements DataPointDatabase {
         }
 
         if (dataPoints.containsKey(dataPoint.getId())) {
-            throw new DatabaseException("DataPoint already exists");
+            throw new DatabaseException("DataPoint with id " + dataPoint.getId() + " already exists");
         }
 
         dataPoints.put(dataPoint.getId(), dataPoint);

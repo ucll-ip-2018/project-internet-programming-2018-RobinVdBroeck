@@ -20,7 +20,7 @@ public class User {
         return email;
     }
 
-    public String setDisplayName(String displayName) {
+    public void setDisplayName(String displayName) {
         this.displayName = displayName;
     }
 }

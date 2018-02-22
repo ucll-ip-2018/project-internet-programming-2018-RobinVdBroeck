@@ -25,10 +25,11 @@ public class DataPointDatabaseStubTests {
     public void testsAddThrowsExceptionWhenDataPointAlreadyExists() {
         var database = new DataPointDatabaseStub();
         var point = mock(DataPoint.class);
+        when(point.getId()).thenReturn(0);
         database.add(point);
 
         assertThatExceptionOfType(DatabaseException.class).isThrownBy(() -> database.add(point))
-                .withMessage("DataPoint already exists");
+                .withMessage("DataPoint with id 0 already exists");
     }
 
     @Test
