@@ -2,7 +2,6 @@ package be.ucll.runetracker.database;
 
 import be.ucll.runetracker.domain.DataPoint;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
