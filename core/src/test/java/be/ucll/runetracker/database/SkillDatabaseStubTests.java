@@ -1,12 +1,14 @@
 package be.ucll.runetracker.database;
 
 
-import org.junit.Test;
 import be.ucll.runetracker.domain.Skill;
+import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -14,8 +16,8 @@ public class SkillDatabaseStubTests {
 
     @Test
     public void testAddAddsASkillToTheDatabaseIfItDoesNotYetExist() {
-        var database = new SkillDatabaseStub();
-        var skill = mock(Skill.class);
+        SkillDatabase database = new SkillDatabaseStub();
+        Skill skill = mock(Skill.class);
 
         database.add(skill);
 
@@ -24,8 +26,8 @@ public class SkillDatabaseStubTests {
 
     @Test
     public void testsAddThrowsExceptionWhenSkillAlreadyExists() {
-        var database = new SkillDatabaseStub();
-        var skill = mock(Skill.class);
+        SkillDatabase database = new SkillDatabaseStub();
+        Skill skill = mock(Skill.class);
 
         database.add(skill);
 
@@ -35,8 +37,8 @@ public class SkillDatabaseStubTests {
 
     @Test
     public void testDeleteDeletesTheSkill() {
-        var database = new SkillDatabaseStub();
-        var skill = mock(Skill.class);
+        SkillDatabase database = new SkillDatabaseStub();
+        Skill skill = mock(Skill.class);
 
         database.add(skill);
         database.delete(skill);
@@ -46,9 +48,9 @@ public class SkillDatabaseStubTests {
 
     @Test
     public void testGetSkillReturnsTheCorrectSkillObject() {
-        var database = new SkillDatabaseStub();
-        var woodcutting = new Skill("woodcutting");
-        var mining = new Skill("mining");
+        SkillDatabase database = new SkillDatabaseStub();
+        Skill woodcutting = new Skill("woodcutting");
+        Skill mining = new Skill("mining");
 
         database.add(woodcutting);
         database.add(mining);
@@ -58,13 +60,13 @@ public class SkillDatabaseStubTests {
 
     @Test
     public void testAddAllAddsThemAllToTheDatabase() {
-        var database = new SkillDatabaseStub();
+        SkillDatabase database = new SkillDatabaseStub();
 
         // Create the skills and add them to the database
-        var skills = new ArrayList<Skill>();
-        final var iterations = 500;
-        for (var i = 0; i < iterations; i++) {
-            var skill = mock(Skill.class);
+        Collection<Skill> skills = new ArrayList<>();
+        final int iterations = 500;
+        for (int i = 0; i < iterations; i++) {
+            Skill skill = mock(Skill.class);
             when(skill.getName()).thenReturn(String.valueOf(i));
             skills.add(skill);
         }

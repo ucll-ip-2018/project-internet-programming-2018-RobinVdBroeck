@@ -4,6 +4,7 @@ import be.ucll.runetracker.domain.DataPoint;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
@@ -13,8 +14,8 @@ import static org.mockito.Mockito.when;
 public class DataPointDatabaseStubTests {
     @Test
     public void testAddAddsADataPointToTheDatabaseIfItDoesNotYetExist() {
-        var database = new DataPointDatabaseStub();
-        var point = mock(DataPoint.class);
+        DataPointDatabase database = new DataPointDatabaseStub();
+        DataPoint point = mock(DataPoint.class);
 
         database.add(point);
 
@@ -23,8 +24,8 @@ public class DataPointDatabaseStubTests {
 
     @Test
     public void testsAddThrowsExceptionWhenDataPointAlreadyExists() {
-        var database = new DataPointDatabaseStub();
-        var point = mock(DataPoint.class);
+        DataPointDatabase database = new DataPointDatabaseStub();
+        DataPoint point = mock(DataPoint.class);
         when(point.getId()).thenReturn(0);
         database.add(point);
 
@@ -34,8 +35,8 @@ public class DataPointDatabaseStubTests {
 
     @Test
     public void testDeleteDeletesTheDataPoint() {
-        var database = new DataPointDatabaseStub();
-        var point = mock(DataPoint.class);
+        DataPointDatabase database = new DataPointDatabaseStub();
+        DataPoint point = mock(DataPoint.class);
         database.add(point);
 
         database.delete(point);
@@ -46,9 +47,9 @@ public class DataPointDatabaseStubTests {
 
     @Test
     public void testGetSkillReturnsTheCorrectSkillObject() {
-        var database = new DataPointDatabaseStub();
-        var point = mock(DataPoint.class);
-        var id = 0;
+        DataPointDatabase database = new DataPointDatabaseStub();
+        DataPoint point = mock(DataPoint.class);
+        int id = 0;
 
         when(point.getId()).thenReturn(id);
         database.add(point);
@@ -58,12 +59,12 @@ public class DataPointDatabaseStubTests {
 
     @Test
     public void testAddAllAddsThemAllToTheDatabase() {
-        var database = new DataPointDatabaseStub();
+        DataPointDatabase database = new DataPointDatabaseStub();
 
-        var dataPoints = new ArrayList<DataPoint>();
-        final var iterations = 500;
-        for(var i = 0; i < iterations; i++) {
-            var dataPoint = mock(DataPoint.class);
+        Collection<DataPoint> dataPoints = new ArrayList<>();
+        int iterations = 500;
+        for (int i = 0; i < iterations; i++) {
+            DataPoint dataPoint = mock(DataPoint.class);
             when(dataPoint.getId()).thenReturn(i);
             dataPoints.add(dataPoint);
         }
