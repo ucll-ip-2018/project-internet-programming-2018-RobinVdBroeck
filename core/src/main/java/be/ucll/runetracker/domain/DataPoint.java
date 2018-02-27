@@ -1,12 +1,17 @@
 package be.ucll.runetracker.domain;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Entity
 public class DataPoint {
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");
+    @Id
+    @GeneratedValue
     private Integer id;
     private LocalDateTime dateTime;
+    @OneToMany
     private User user;
     private int experience;
     private int rank;

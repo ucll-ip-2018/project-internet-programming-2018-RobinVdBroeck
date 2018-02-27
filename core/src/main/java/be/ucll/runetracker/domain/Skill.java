@@ -1,6 +1,10 @@
 package be.ucll.runetracker.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 public class Skill {
+    @Id
     private String name;
 
     public Skill() {}
