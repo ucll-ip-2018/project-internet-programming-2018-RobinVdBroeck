@@ -4,10 +4,10 @@ import be.ucll.runetracker.domain.Skill;
 
 import java.util.*;
 
-class SkillDatabaseStub implements SkillDatabase {
+public class SkillDatabaseStub implements SkillDatabase {
     private Map<String, Skill> skills = new HashMap<>();
 
-    SkillDatabaseStub() {
+    public SkillDatabaseStub() {
 
     }
 

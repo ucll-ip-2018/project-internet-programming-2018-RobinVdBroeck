@@ -5,12 +5,12 @@ import be.ucll.runetracker.domain.DataPoint;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-class DataPointDatabaseStub implements DataPointDatabase {
+public class DataPointDatabaseStub implements DataPointDatabase {
     private Map<Integer, DataPoint> dataPoints;
     private final AtomicInteger counter;
 
 
-    DataPointDatabaseStub() {
+    public DataPointDatabaseStub() {
         dataPoints = new HashMap<>();
         counter = new AtomicInteger();
     }
