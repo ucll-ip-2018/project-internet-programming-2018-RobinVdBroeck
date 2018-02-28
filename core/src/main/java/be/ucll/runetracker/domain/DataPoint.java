@@ -1,6 +1,12 @@
 package be.ucll.runetracker.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,9 +17,15 @@ public class DataPoint {
     @GeneratedValue
     private Integer id;
     private LocalDateTime dateTime;
+
     @OneToMany
+    @NotNull
     private User user;
+
+    @PositiveOrZero
+    @NotNull
     private int experience;
+    @Positive
     private int rank;
 
     public DataPoint() {

@@ -1,10 +1,13 @@
 package be.ucll.runetracker.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class Skill {
     @Id
+    @NotEmpty
+    @NotNull
     private String name;
 
     public Skill() {}
