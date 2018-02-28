@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -31,7 +33,7 @@ public class UserController {
     }
 
     @RequestMapping(value="/create", method = RequestMethod.POST)
-    public String save(User user, BindingResult result) {
+    public String save(@Valid User user, BindingResult result) {
         if(result.hasErrors()) {
             return "user/create";
         }

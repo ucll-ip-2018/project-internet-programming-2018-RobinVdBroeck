@@ -3,11 +3,20 @@ package be.ucll.runetracker.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class User {
     @Id
+    @Email(message = "Email should be valid")
+    @NotNull(message = "Email cannot be null")
+    @NotEmpty
     private String email;
+
+    @NotNull
+    @NotEmpty
     private String displayName;
 
     public User() {
@@ -19,10 +28,6 @@ public class User {
     }
 
     public void setEmail(String email) {
-        if (email.trim().isEmpty()) {
-            throw new DomainException("Email should not be empty");
-        }
-
         this.email = email;
     }
 
@@ -31,10 +36,6 @@ public class User {
     }
 
     public void setDisplayName(String displayName) {
-        if (displayName.trim().isEmpty()) {
-            throw new DomainException("DisplayName should not be empty");
-        }
-
         this.displayName = displayName;
     }
 
