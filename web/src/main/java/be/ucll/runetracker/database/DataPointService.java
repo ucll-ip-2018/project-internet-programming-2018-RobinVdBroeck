@@ -47,8 +47,8 @@ public class DataPointService {
     }
 
     // USERS
-    public Optional<User> getUser(String email) {
-        return userDatabase.get(email);
+    public Optional<User> getUser(int id) {
+        return userDatabase.get(id);
     }
 
     public List<User> getAllUsers() {

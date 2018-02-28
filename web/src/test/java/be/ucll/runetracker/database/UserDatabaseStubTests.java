@@ -49,14 +49,14 @@ public class UserDatabaseStubTests {
         UserDatabase database = new UserDatabaseStub();
 
         User robin = mock(User.class);
-        when(robin.getEmail()).thenReturn("robin");
+        when(robin.getId()).thenReturn(0);
         User joris = mock(User.class);
-        when(joris.getEmail()).thenReturn("joris");
+        when(joris.getId()).thenReturn(1);
 
         database.add(robin);
         database.add(joris);
 
-        assertThat(database.get("robin")).contains(robin);
+        assertThat(database.get(0)).contains(robin);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class UserDatabaseStubTests {
         final int iterations = 500;
         for (int i = 0; i < iterations; i++) {
             User user = mock(User.class);
-            when(user.getEmail()).thenReturn(i + "@localhost");
+            when(user.getId()).thenReturn(i);
             users.add(user);
         }
         database.addAll(users);

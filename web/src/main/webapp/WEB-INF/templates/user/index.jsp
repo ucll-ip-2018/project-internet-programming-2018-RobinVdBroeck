@@ -19,8 +19,12 @@
                 <td>
                     <c:out value="${user.displayName}"/>
                 </td>
-                <td><
-                    <button type="button" class="btn btn-primary">View</button>
+                <td>
+                    <a href="<c:url value="/user/${user.id}"/>">
+                        <button type="button" class="btn btn-primary">
+                            View
+                        </button>
+                    </a>
                     <button type="button" class="btn btn-primary">Edit</button>
                     <button type="button" class="btn btn-danger">Delete</button>
                 </td>

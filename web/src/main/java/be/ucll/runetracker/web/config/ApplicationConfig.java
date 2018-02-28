@@ -25,7 +25,9 @@ public class ApplicationConfig {
     @Bean
     public DataPointService dataPointService(
             @Autowired UserDatabase userDatabase,
-            @Autowired DataPointDatabase dataPointDatabase) {
-        return new DataPointService(userDatabase, dataPointDatabase);
+            @Autowired DataPointDatabase dataPointDatabase,
+            @Autowired SkillDatabase skillDatabase
+    ) {
+        return new DataPointService(userDatabase, dataPointDatabase, skillDatabase);
     }
 }

@@ -2,16 +2,19 @@ package be.ucll.runetracker.web.controller;
 
 import be.ucll.runetracker.database.DataPointService;
 import be.ucll.runetracker.domain.User;
+import be.ucll.runetracker.web.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
@@ -39,5 +42,14 @@ public class UserController {
         }
         dataPointService.addUser(user);
         return "redirect:/user/";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ModelAndView show(@PathVariable int id) {
+        Optional<User> user = dataPointService.getUser(id);
+        if(user.isPresent()) {
+            return new ModelAndView("user/show", "user", user.get());
+        }
+        throw new ResourceNotFoundException();
     }
 }
