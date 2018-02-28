@@ -16,7 +16,7 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("index");
-        registry.addViewController("index.htm").setViewName("index");
+        registry.addViewController("index.html").setViewName("index");
     }
 
     @Bean

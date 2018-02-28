@@ -10,8 +10,8 @@ public class User {
     private String email;
     private String displayName;
 
-    private User() {
-        this(null);
+    public User() {
+
     }
 
     public User(String email) {
@@ -19,6 +19,10 @@ public class User {
     }
 
     public void setEmail(String email) {
+        if (email.trim().isEmpty()) {
+            throw new DomainException("Email should not be empty");
+        }
+
         this.email = email;
     }
 
@@ -27,6 +31,14 @@ public class User {
     }
 
     public void setDisplayName(String displayName) {
+        if (displayName.trim().isEmpty()) {
+            throw new DomainException("DisplayName should not be empty");
+        }
+
         this.displayName = displayName;
+    }
+
+    public String getDisplayName() {
+        return this.displayName;
     }
 }

@@ -17,7 +17,7 @@
                     <c:out value="${user.email}"/>
                 </td>
                 <td>
-                    <c:out value="${user.currentDisplayName}"/>
+                    <c:out value="${user.displayName}"/>
                 </td>
                 <td><
                     <button type="button" class="btn btn-primary">View</button>
@@ -28,6 +28,7 @@
         </c:forEach>
         </tbody>
     </table>
+    <a href="${pageContext.request.contextPath}/user/create">Add a user</a>
 </div>
 
 <%@include file="/WEB-INF/parts/footer.jsp" %>

@@ -21,7 +21,7 @@ public class ApplicationConfig {
     public DataPointDatabase dataPointDatabase() {
         return new DataPointDatabaseStub();
     }
-    
+
     @Bean
     public DataPointService dataPointService(
             @Autowired UserDatabase userDatabase,

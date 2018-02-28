@@ -1,0 +1,22 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@include file="/WEB-INF/parts/header.jsp" %>
+<div class="container">
+    <h1>Create User</h1>
+    <form:form modelAttribute="user" method="post" action="${pageContext.request.contextPath}/user/create">
+        <div class="form-group row">
+            <label for="Email" class="col-sm-2">Email: </label>
+            <form:input path="email" class="form-group col-sm-10"/>
+            <form:errors path="email" cssClass="error" />
+        </div>
+        <div class="form-group row">
+            <label for="displayName" class="col-sm-2">Display name: </label>
+            <form:input path="displayName" class="form-group col-sm-10"/>
+            <form:errors path="displayName" cssClass="error" />
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form:form>
+</div>
+<%@include file="/WEB-INF/parts/footer.jsp" %>

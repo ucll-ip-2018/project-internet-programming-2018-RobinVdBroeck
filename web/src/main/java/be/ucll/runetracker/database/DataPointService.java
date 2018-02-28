@@ -9,7 +9,7 @@ public class DataPointService {
     private UserDatabase userDatabase;
     private DataPointDatabase dataPointDatabase;
 
-    public DataPointService() {
+    private DataPointService() {
 
     }
 
@@ -18,28 +18,32 @@ public class DataPointService {
         setDataPointDatabase(dataPointDatabase);
     }
 
-    public UserDatabase getUserDatabase() {
+    private UserDatabase getUserDatabase() {
         return userDatabase;
     }
 
-    public void setUserDatabase(UserDatabase userDatabase) {
+    private void setUserDatabase(UserDatabase userDatabase) {
         this.userDatabase = userDatabase;
     }
 
-    public DataPointDatabase getDataPointDatabase() {
+    private DataPointDatabase getDataPointDatabase() {
         return dataPointDatabase;
     }
 
-    public void setDataPointDatabase(DataPointDatabase dataPointDatabase) {
+    private void setDataPointDatabase(DataPointDatabase dataPointDatabase) {
         this.dataPointDatabase = dataPointDatabase;
     }
 
 
     public List<User> getAllUsers() {
-        return getUserDatabase().all();
+        return userDatabase.all();
+    }
+
+    public void addUser(User user) {
+        userDatabase.add(user);
     }
 
     public List<DataPoint> getAllDatapoints() {
-        return getDataPointDatabase().all();
+        return dataPointDatabase.all();
     }
 }
