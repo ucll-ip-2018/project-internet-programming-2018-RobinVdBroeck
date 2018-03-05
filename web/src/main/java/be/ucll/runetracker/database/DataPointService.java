@@ -1,33 +1,32 @@
 package be.ucll.runetracker.database;
 
 import be.ucll.runetracker.domain.DataPoint;
+import be.ucll.runetracker.domain.RunescapeUser;
 import be.ucll.runetracker.domain.Skill;
-import be.ucll.runetracker.domain.User;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
 public class DataPointService {
-    private UserDatabase userDatabase;
+    private RunescapeUserDatabase runescapeUserDatabase;
     private DataPointDatabase dataPointDatabase;
     private SkillDatabase skillDatabase;
 
     private DataPointService() {
     }
 
-    public DataPointService(UserDatabase userDatabase, DataPointDatabase dataPointDatabase, SkillDatabase skillDatabase) {
-        setUserDatabase(userDatabase);
+    public DataPointService(RunescapeUserDatabase runescapeUserDatabase, DataPointDatabase dataPointDatabase, SkillDatabase skillDatabase) {
+        setRunescapeUserDatabase(runescapeUserDatabase);
         setDataPointDatabase(dataPointDatabase);
         setSkillDatabase(skillDatabase);
     }
 
-    private UserDatabase getUserDatabase() {
-        return userDatabase;
+    private RunescapeUserDatabase getRunescapeUserDatabase() {
+        return runescapeUserDatabase;
     }
 
-    private void setUserDatabase(UserDatabase userDatabase) {
-        this.userDatabase = userDatabase;
+    private void setRunescapeUserDatabase(RunescapeUserDatabase runescapeUserDatabase) {
+        this.runescapeUserDatabase = runescapeUserDatabase;
     }
 
     private DataPointDatabase getDataPointDatabase() {
@@ -47,21 +46,21 @@ public class DataPointService {
     }
 
     // USERS
-    public Optional<User> getUser(int id) {
-        return userDatabase.get(id);
+    public Optional<RunescapeUser> getUser(int id) {
+        return runescapeUserDatabase.get(id);
     }
 
-    public List<User> getAllUsers() {
-        return userDatabase.all();
+    public List<RunescapeUser> getAllUsers() {
+        return runescapeUserDatabase.all();
     }
 
-    public void addUser(User user) {
-        userDatabase.add(user);
+    public void addUser(RunescapeUser user) {
+        runescapeUserDatabase.add(user);
     }
 
 
-    public void deleteUser(User user) {
-        userDatabase.delete(user);
+    public void deleteUser(RunescapeUser user) {
+        runescapeUserDatabase.delete(user);
     }
 
     // DATAPOINTS

@@ -20,7 +20,7 @@ public class DataPoint {
 
     @OneToMany
     @NotNull
-    private User user;
+    private RunescapeUser user;
 
     @PositiveOrZero
     @NotNull
@@ -31,7 +31,7 @@ public class DataPoint {
     public DataPoint() {
     }
 
-    public DataPoint(int id, LocalDateTime dateTime, User user, int exp, int rank) {
+    public DataPoint(int id, LocalDateTime dateTime, RunescapeUser user, int exp, int rank) {
         setId(id);
         setDateTime(dateTime);
         setUser(user);
@@ -75,11 +75,11 @@ public class DataPoint {
         return this.rank;
     }
 
-    public User getUser() {
+    public RunescapeUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(RunescapeUser user) {
         this.user = user;
     }
 

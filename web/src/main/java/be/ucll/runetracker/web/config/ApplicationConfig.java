@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ApplicationConfig {
     @Bean
-    public UserDatabase userDatabase() {
-        return new UserDatabaseStub();
+    public RunescapeUserDatabase runescapeUserDatabase() {
+        return new RunescapeUserDatabaseJPA();
     }
 
     @Bean
@@ -24,10 +24,10 @@ public class ApplicationConfig {
 
     @Bean
     public DataPointService dataPointService(
-            @Autowired UserDatabase userDatabase,
+            @Autowired RunescapeUserDatabase runescapeUserDatabase,
             @Autowired DataPointDatabase dataPointDatabase,
             @Autowired SkillDatabase skillDatabase
     ) {
-        return new DataPointService(userDatabase, dataPointDatabase, skillDatabase);
+        return new DataPointService(runescapeUserDatabase, dataPointDatabase, skillDatabase);
     }
 }

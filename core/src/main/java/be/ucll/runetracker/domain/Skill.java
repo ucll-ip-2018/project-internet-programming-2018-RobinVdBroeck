@@ -1,9 +1,11 @@
 package be.ucll.runetracker.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Skill {
     @Id
     @NotEmpty

@@ -1,19 +1,19 @@
 package be.ucll.runetracker.database;
 
-import be.ucll.runetracker.domain.User;
+import be.ucll.runetracker.domain.RunescapeUser;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class UserDatabaseStub implements UserDatabase {
-    private Map<Integer, User> users = new HashMap<>();
+public class RunescapeUserDatabaseStub implements RunescapeUserDatabase {
+    private Map<Integer, RunescapeUser> users = new HashMap<>();
     private AtomicInteger counter = new AtomicInteger();
 
-    public UserDatabaseStub() {
+    public RunescapeUserDatabaseStub() {
     }
 
     @Override
-    public void add(User user) {
+    public void add(RunescapeUser user) {
         if(user.getId() == null) {
             user.setId(counter.getAndIncrement());
         }
@@ -25,22 +25,22 @@ public class UserDatabaseStub implements UserDatabase {
     }
 
     @Override
-    public void addAll(Collection<User> users) {
+    public void addAll(Collection<RunescapeUser> users) {
         users.forEach(this::add);
     }
 
     @Override
-    public void delete(User user) {
+    public void delete(RunescapeUser user) {
         users.remove(user.getId());
     }
 
     @Override
-    public Optional<User> get(int id) {
+    public Optional<RunescapeUser> get(int id) {
         return Optional.ofNullable(users.get(id));
     }
 
     @Override
-    public List<User> all() {
+    public List<RunescapeUser> all() {
         return new ArrayList<>(users.values());
     }
 }

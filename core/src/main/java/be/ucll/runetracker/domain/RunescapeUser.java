@@ -9,7 +9,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class User {
+public class RunescapeUser {
     @Id
     @GeneratedValue
     private Integer id;
@@ -17,17 +17,19 @@ public class User {
     @Email(message = "Email should be valid")
     @NotNull(message = "Email cannot be null")
     @NotEmpty
+    @Column(unique = true)
     private String email;
 
     @NotNull
     @NotEmpty
+    @Column(unique = true)
     private String displayName;
 
-    public User() {
+    public RunescapeUser() {
 
     }
 
-    public User(String email) {
+    public RunescapeUser(String email) {
         setEmail(email);
     }
 
