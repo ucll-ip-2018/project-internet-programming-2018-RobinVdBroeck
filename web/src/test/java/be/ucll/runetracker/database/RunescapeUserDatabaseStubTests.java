@@ -30,7 +30,7 @@ public class RunescapeUserDatabaseStubTests {
         database.add(RunescapeUser);
 
         assertThatExceptionOfType(DatabaseException.class).isThrownBy(() -> database.add(RunescapeUser))
-                .withMessage("RunescapeUser already exists");
+                .withMessage("User already exists");
     }
 
     @Test
