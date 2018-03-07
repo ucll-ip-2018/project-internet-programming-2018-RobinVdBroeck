@@ -58,7 +58,6 @@ public class DataPointService {
         runescapeUserDatabase.add(user);
     }
 
-
     public void deleteUser(RunescapeUser user) {
         runescapeUserDatabase.delete(user);
     }
@@ -96,4 +95,5 @@ public class DataPointService {
     public void deleteSkill(Skill skill) {
         skillDatabase.delete(skill);
     }
+
 }

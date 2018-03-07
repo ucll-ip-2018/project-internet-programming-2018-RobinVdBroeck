@@ -2,13 +2,13 @@
 <%@include file="/WEB-INF/parts/header.jsp" %>
 <div class="container">
     <p>
-        <strong>Id:</strong> <c:out value="${user.id}"/>
+        <strong>Id:</strong> <c:out value="${runescapeUser.id}"/>
     </p>
     <p>
-        <strong>Email:</strong> <c:out value="${user.email}"/>
+        <strong>Email:</strong> <c:out value="${runescapeUser.email}"/>
     </p>
     <p>
-        <strong>Display name:</strong> <c:out value="${user.displayName}"/>
+        <strong>Display name:</strong> <c:out value="${runescapeUser.displayName}"/>
     </p>
     <p>
         <a href="<c:url value="/user/" />">

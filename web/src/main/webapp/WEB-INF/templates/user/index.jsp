@@ -25,8 +25,12 @@
                             View
                         </button>
                     </a>
-                    <button type="button" class="btn btn-primary">Edit</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <a href="<c:url value="/user/${user.id}/edit" />">
+                        <button type="button" class="btn btn-primary">Edit</button>
+                    </a>
+                    <a href="<c:url value="/user/${user.id}/delete"/>">
+                        <button type="button" class="btn btn-danger">Delete</button>
+                    </a>
                 </td>
             </tr>
         </c:forEach>

@@ -6,10 +6,7 @@ import be.ucll.runetracker.web.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -29,12 +26,12 @@ public class RunescapeUserController {
         return new ModelAndView("user/index", "users", dataPointService.getAllUsers());
     }
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @GetMapping(value = "/create")
     public ModelAndView create() {
         return new ModelAndView("user/create", "runescapeUser", new RunescapeUser());
     }
 
-    @RequestMapping(value="/create", method = RequestMethod.POST)
+    @PostMapping(value="/create")
     public String save(@Valid RunescapeUser user, BindingResult result) {
         if(result.hasErrors()) {
             return "user/create";
@@ -43,12 +40,41 @@ public class RunescapeUserController {
         return "redirect:/user/";
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping("/{id}")
     public ModelAndView show(@PathVariable int id) {
         Optional<RunescapeUser> user = dataPointService.getUser(id);
         if(user.isPresent()) {
-            return new ModelAndView("user/show", "user", user.get());
+            return new ModelAndView("user/show", "runescapeUser", user.get());
         }
         throw new ResourceNotFoundException();
+    }
+
+    @GetMapping("/{id}/edit")
+    public ModelAndView edit(@PathVariable int id) {
+        Optional<RunescapeUser> user = dataPointService.getUser(id);
+        if(user.isPresent()) {
+            return new ModelAndView("user/edit", "runescapeUser", user.get());
+        }
+        throw new ResourceNotFoundException();
+    }
+
+    @PostMapping("/{id}/edit")
+    public String editPost(@PathVariable int id, @Valid RunescapeUser user, BindingResult result) {
+        if(result.hasErrors()) {
+            return "user/" + user.getId() + "/edit";
+        }
+        // TODO: save it
+        return "redirect:/user/" + user.getId();
+    }
+
+
+    @GetMapping("{id}/delete")
+    public String delete(@PathVariable int id) {
+        Optional<RunescapeUser> user = dataPointService.getUser(id);
+        if(!user.isPresent()) {
+            throw new ResourceNotFoundException();
+        }
+        dataPointService.deleteUser(user.get());
+        return "redirect:/user/";
     }
 }
