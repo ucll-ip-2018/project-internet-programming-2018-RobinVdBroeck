@@ -62,6 +62,10 @@ public class DataPointService {
         runescapeUserDatabase.delete(user);
     }
 
+    public void updateUser(RunescapeUser user) {
+        runescapeUserDatabase.update(user);
+    }
+
     // DATAPOINTS
     public Optional<DataPoint> getDatapoint(int id) {
         return dataPointDatabase.get(id);

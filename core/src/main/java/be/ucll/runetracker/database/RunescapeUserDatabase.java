@@ -16,4 +16,6 @@ public interface RunescapeUserDatabase {
     Optional<RunescapeUser> get(int id);
 
     List<RunescapeUser> all();
+
+    void update(RunescapeUser user);
 }

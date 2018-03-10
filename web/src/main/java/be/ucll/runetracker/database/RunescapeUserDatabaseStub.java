@@ -43,4 +43,9 @@ public class RunescapeUserDatabaseStub implements RunescapeUserDatabase {
     public List<RunescapeUser> all() {
         return new ArrayList<>(users.values());
     }
+
+    @Override
+    public void update(RunescapeUser user) {
+        users.put(user.getId(), user);
+    }
 }

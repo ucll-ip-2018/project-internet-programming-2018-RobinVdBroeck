@@ -67,4 +67,20 @@ public class RunescapeUserDatabaseJPA implements RunescapeUserDatabase {
     public List<RunescapeUser> all() {
         return entityManager.createQuery("SELECT u FROM RunescapeUser u", RunescapeUser.class).getResultList();
     }
+
+    @Override
+    public void update(RunescapeUser user) {
+        EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        try {
+            Query query = entityManager.createQuery("UPDATE RunescapeUser SET email = :email, " +
+                    "displayName = :displayname WHERE id = :id");
+            query.setParameter("email", user.getEmail());
+            query.setParameter("displayname", user.getDisplayName());
+            query.setParameter("id", user.getId());
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        }
+    }
 }
