@@ -1,3 +1,4 @@
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -35,18 +36,24 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/">Home</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/">
+                            <spring:message code="label.home" />
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/datapoint">DataPoints</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/datapoint">
+                            <spring:message code="label.datapoints" />
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="${pageContext.request.contextPath}/user">Users</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/user">
+                            <spring:message code="label.users" />
+                        </a>
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Lookup user" aria-label="Search">
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+                    <input class="form-control mr-sm-2" type="search" placeholder="<spring:message code="label.lookup.user"/>" aria-label="Search">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit"><spring:message code="label.search"/></button>
                 </form>
             </div>
         </div>
