@@ -1,4 +1,4 @@
-version: "3"
+version: "3.6"
 services:
   web:
     build: .
@@ -7,7 +7,7 @@ services:
     links:
       - database
   database:
-    image: postgres
+    image: postgres:alpine
     restart: always
     environment:
       POSTGRES_USER: runetracker

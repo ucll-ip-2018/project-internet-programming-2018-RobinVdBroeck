@@ -1,10 +1,8 @@
 package be.ucll.runetracker.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
@@ -18,13 +16,14 @@ public class DataPoint {
     private Integer id;
     private LocalDateTime dateTime;
 
-    @OneToMany
+    @ManyToOne
     @NotNull
     private RunescapeUser user;
 
     @PositiveOrZero
     @NotNull
     private int experience;
+
     @Positive
     private int rank;
 

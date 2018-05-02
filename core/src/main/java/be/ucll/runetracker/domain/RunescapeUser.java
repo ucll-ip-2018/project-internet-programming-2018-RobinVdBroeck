@@ -29,7 +29,8 @@ public class RunescapeUser {
 
     }
 
-    public RunescapeUser(String email) {
+    public RunescapeUser(String email, String displayName) {
+        setDisplayName(displayName);
         setEmail(email);
     }
 

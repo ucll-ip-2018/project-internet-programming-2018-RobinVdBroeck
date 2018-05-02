@@ -14,12 +14,14 @@ public class ApplicationConfig {
 
     @Bean
     public SkillDatabase skillDatabase() {
-        return new SkillDatabaseStub();
+        return new SkillDatabaseJPA();
+
     }
 
     @Bean
     public DataPointDatabase dataPointDatabase() {
-        return new DataPointDatabaseStub();
+        return new DataPointDatabaseJPA();
+
     }
 
     @Bean
