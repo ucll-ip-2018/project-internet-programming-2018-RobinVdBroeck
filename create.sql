@@ -1,0 +1,2 @@
+CREATE USER runetracker WITH ENCRYPTED PASSWORD 'app';
+CREATE DATABASE runetracker;
