@@ -24,7 +24,7 @@
             <artifactId>runetracker-core</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-        
+
         <!-- JPA -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
