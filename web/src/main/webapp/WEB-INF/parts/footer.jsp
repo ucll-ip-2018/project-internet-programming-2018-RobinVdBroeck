@@ -6,6 +6,7 @@
                 View the source code at <a
                     href="https://github.com/ucll-ip-2018/project-internet-programming-2018-RobinVdBroeck"
                     target="_blank" rel="noopener">Github</a>
+                - <a id="language-english" href=";">English</a> | <a id="language-dutch" href=";">Nederlands</a>
             </p>
         </div>
     </div>
@@ -23,5 +24,29 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"
 ></script>
+<script>
+    /**
+     * Change the local
+     * @param local Which local to use
+     */
+    function switchLocal(local) {
+        document.cookie = 'runetracker_local=' + local;
+        reload()
+    }
+
+    /**
+     * Reload the window
+     */
+    function reload() {
+        window.location = window.location;
+    }
+
+    $("#language-english").on("click", function() {
+        switchLocal("en");
+    });
+    $("#language-dutch").on("click", function() {
+        switchLocal("nl")
+    })
+</script>
 </body>
 </html>
