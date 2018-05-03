@@ -2,11 +2,12 @@
     <div class="container">
         <div>
             <p>
-                Made by <a href="//robinvdb.me" target="_blank" rel="noopener">Robin Van den Broeck</a> for IP-Major.
+                Made by <a href="https://robinvdb.me" target="_blank" rel="noopener">Robin Van den Broeck</a> for
+                IP-Major.
                 View the source code at <a
                     href="https://github.com/ucll-ip-2018/project-internet-programming-2018-RobinVdBroeck"
                     target="_blank" rel="noopener">Github</a>
-                - <a id="language-english" href=";">English</a> | <a id="language-dutch" href=";">Nederlands</a>
+                - <a id="language-english" href="">English</a> | <a id="language-dutch" href="">Nederlands</a>
             </p>
         </div>
     </div>
@@ -41,12 +42,13 @@
         window.location = window.location;
     }
 
-    $("#language-english").on("click", function() {
+    document.querySelector("#language-english").addEventListener("click", function() {
         switchLocal("en");
     });
-    $("#language-dutch").on("click", function() {
+
+    document.querySelector("#language-dutch").addEventListener("click", function () {
         switchLocal("nl")
-    })
+    });
 </script>
 </body>
 </html>
