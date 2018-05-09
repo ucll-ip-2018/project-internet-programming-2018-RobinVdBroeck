@@ -20,16 +20,14 @@
                     <c:out value="${user.displayName}"/>
                 </td>
                 <td>
-                    <a href="<c:url value="/user/${user.id}"/>">
-                        <button type="button" class="btn btn-primary">
-                            View
-                        </button>
+                    <a href="<c:url value="/user/${user.id}"/>" class="btn btn-primary">
+                        View
                     </a>
-                    <a href="<c:url value="/user/${user.id}/edit" />">
-                        <button type="button" class="btn btn-primary">Edit</button>
+                    <a href="<c:url value="/user/${user.id}/edit" />" class="btn btn-primary">
+                        Edit
                     </a>
-                    <a href="<c:url value="/user/${user.id}/delete"/>">
-                        <button type="button" class="btn btn-danger">Delete</button>
+                    <a href="<c:url value="/user/${user.id}/delete"/>" class="btn btn-danger">
+                        Delete
                     </a>
                 </td>
             </tr>
