@@ -4,7 +4,6 @@ WORKDIR /usr/src/app
 # Install amven dependencies
 COPY pom.xml /usr/src/app/
 COPY core/pom.xml /usr/src/app/core/
-COPY database/pom.xml /usr/src/app/database/
 COPY web/pom.xml /usr/src/app/web/
 RUN mvn -T 1C install
 
