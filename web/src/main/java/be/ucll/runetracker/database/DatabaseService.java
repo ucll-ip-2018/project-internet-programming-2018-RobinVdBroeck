@@ -8,18 +8,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-public class DataPointService {
+public class DatabaseService {
     private RunescapeUserDatabase runescapeUserDatabase;
     private DataPointDatabase dataPointDatabase;
-    private SkillDatabase skillDatabase;
 
-    private DataPointService() {
+    private DatabaseService() {
     }
 
-    public DataPointService(RunescapeUserDatabase runescapeUserDatabase, DataPointDatabase dataPointDatabase, SkillDatabase skillDatabase) {
+    public DatabaseService(RunescapeUserDatabase runescapeUserDatabase, DataPointDatabase dataPointDatabase) {
         setRunescapeUserDatabase(runescapeUserDatabase);
         setDataPointDatabase(dataPointDatabase);
-        setSkillDatabase(skillDatabase);
     }
 
     private RunescapeUserDatabase getRunescapeUserDatabase() {
@@ -36,14 +34,6 @@ public class DataPointService {
 
     private void setDataPointDatabase(DataPointDatabase dataPointDatabase) {
         this.dataPointDatabase = dataPointDatabase;
-    }
-
-    private SkillDatabase getSkillDatabase() {
-        return skillDatabase;
-    }
-
-    private void setSkillDatabase(SkillDatabase skillDatabase) {
-        this.skillDatabase = skillDatabase;
     }
 
     // USERS
@@ -83,22 +73,4 @@ public class DataPointService {
     public void deletedDataPoint(DataPoint dataPoint) {
         dataPointDatabase.delete(dataPoint);
     }
-
-    // Skills
-    public Optional<Skill> getSkill(String name) {
-        return skillDatabase.get(name);
-    }
-
-    public Stream<Skill> getAllSkills() {
-        return skillDatabase.all();
-    }
-
-    public void addSkill(Skill skill) {
-        skillDatabase.add(skill);
-    }
-
-    public void deleteSkill(Skill skill) {
-        skillDatabase.delete(skill);
-    }
-
 }

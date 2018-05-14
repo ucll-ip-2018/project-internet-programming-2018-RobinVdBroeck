@@ -1,21 +1,25 @@
 package be.ucll.runetracker.web.controller;
 
-import be.ucll.runetracker.database.DataPointService;
+import be.ucll.runetracker.database.DatabaseService;
+import be.ucll.runetracker.domain.DataPointEntry;
 import be.ucll.runetracker.domain.RunescapeUser;
 import be.ucll.runetracker.web.ResourceNotFoundException;
+import be.ucll.runetracker.web.config.HighScoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Controller
 @RequestMapping(value = "/api/user")
 public class RunescapeUserRestController {
-    private final DataPointService service;
+    private final DatabaseService service;
 
-    public RunescapeUserRestController(@Autowired DataPointService service) {
+    public RunescapeUserRestController(@Autowired DatabaseService service) {
         this.service = service;
     }
 
@@ -56,6 +60,15 @@ public class RunescapeUserRestController {
     @ResponseBody
     public void deleteUser(@PathVariable int id) {
         service.deleteUser(service.getUser(id).orElseThrow(ResourceNotFoundException::new));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/stats")
+    public List<DataPointEntry> stats(@PathVariable int id) {
+        RunescapeUser user = service.getUser(id).orElseThrow(ResourceNotFoundException::new);
+        HighScoresService highScoresService = new HighScoresService();
+
+        List<DataPointEntry> stats =  highScoresService.getStats(user.getDisplayName());
+        return stats;
     }
 
 }

@@ -8,11 +8,11 @@ import org.junit.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
-public class DataPointServiceSmokeTest {
+public class DatabaseServiceSmokeTest {
     @Test
     public void smokeTest() {
         RunescapeUserDatabase runescapeUserDatabase = new RunescapeUserDatabaseStub();
-        DataPointService service = new DataPointService(runescapeUserDatabase, mock(DataPointDatabase.class), mock(SkillDatabase.class));
+        DatabaseService service = new DatabaseService(runescapeUserDatabase, mock(DataPointDatabase.class));
 
         assertThat(service.getAllUsers())
                 .hasSize(0);

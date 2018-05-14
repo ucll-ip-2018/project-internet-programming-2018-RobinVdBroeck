@@ -12,11 +12,6 @@ public class ApplicationConfig {
         return new RunescapeUserDatabaseJPA();
     }
 
-    @Bean
-    public SkillDatabase skillDatabase() {
-        return new SkillDatabaseJPA();
-
-    }
 
     @Bean
     public DataPointDatabase dataPointDatabase() {
@@ -25,11 +20,10 @@ public class ApplicationConfig {
     }
 
     @Bean
-    public DataPointService dataPointService(
+    public DatabaseService dataPointService(
             @Autowired RunescapeUserDatabase runescapeUserDatabase,
-            @Autowired DataPointDatabase dataPointDatabase,
-            @Autowired SkillDatabase skillDatabase
+            @Autowired DataPointDatabase dataPointDatabase
     ) {
-        return new DataPointService(runescapeUserDatabase, dataPointDatabase, skillDatabase);
+        return new DatabaseService(runescapeUserDatabase, dataPointDatabase);
     }
 }

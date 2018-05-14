@@ -10,5 +10,5 @@ RUN mvn -T 1C install
 COPY . /usr/src/app
 RUN mvn package -Dmaven.skip.test=true
 
-FROM payara/micro
-COPY --from=builder /usr/src/app/web/target/runetracker.war /opt/payara/deployments
+FROM payara/server-full:5.181
+COPY --from=builder /usr/src/app/web/target/runetracker.war $DEPLOY_DIR

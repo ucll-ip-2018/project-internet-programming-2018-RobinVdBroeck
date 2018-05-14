@@ -2,11 +2,11 @@ package be.ucll.runetracker.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Null;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class DataPoint {
@@ -16,26 +16,22 @@ public class DataPoint {
     private Integer id;
     private LocalDateTime dateTime;
 
+    @OneToMany
+    private Set<DataPointEntry> entries;
+
     @ManyToOne
     @NotNull
     private RunescapeUser user;
 
-    @PositiveOrZero
-    @NotNull
-    private int experience;
-
-    @Positive
-    private int rank;
 
     public DataPoint() {
     }
 
-    public DataPoint(int id, LocalDateTime dateTime, RunescapeUser user, int exp, int rank) {
+    public DataPoint(int id, LocalDateTime dateTime, RunescapeUser user, Collection<DataPointEntry> entries) {
         setId(id);
         setDateTime(dateTime);
         setUser(user);
-        setExperience(exp);
-        setRank(rank);
+        setEntries(entries);
     }
 
     public Integer getId() {
@@ -58,22 +54,6 @@ public class DataPoint {
         return getDateTime().format(dateTimeFormatter);
     }
 
-    public void setExperience(int experience) {
-        this.experience = experience;
-    }
-
-    public int getExperience() {
-        return this.experience;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
-    public int getRank() {
-        return this.rank;
-    }
-
     public RunescapeUser getUser() {
         return user;
     }
@@ -82,4 +62,20 @@ public class DataPoint {
         this.user = user;
     }
 
+    public void setEntries(Set<DataPointEntry> entries) {
+        this.entries = entries;
+    }
+
+    public void setEntries(Collection<DataPointEntry> entries) {
+        if(this.entries == null) {
+            this.entries = new HashSet<>();
+        } else {
+            this.entries.clear();
+        }
+        this.entries.addAll(entries);
+    }
+
+    public Collection<DataPointEntry> getEntries() {
+        return entries;
+    }
 }

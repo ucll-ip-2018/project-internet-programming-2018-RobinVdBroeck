@@ -1,12 +1,12 @@
 package be.ucll.runetracker.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class RunescapeUser {
@@ -25,13 +25,16 @@ public class RunescapeUser {
     @Column(unique = true)
     private String displayName;
 
-    public RunescapeUser() {
+    @OneToMany
+    private Set<DataPoint> dataPoints;
 
+    public RunescapeUser() {
     }
 
-    public RunescapeUser(String email, String displayName) {
+    public RunescapeUser(String email, String displayName, Collection<DataPoint> dataPoints) {
         setDisplayName(displayName);
         setEmail(email);
+        setDataPoints(dataPoints);
     }
 
     public Integer getId() {
@@ -58,4 +61,20 @@ public class RunescapeUser {
         return this.displayName;
     }
 
+    public Set<DataPoint> getDataPoints() {
+        return dataPoints;
+    }
+
+    public void setDataPoints(Collection<DataPoint> datapoints) {
+        if(this.dataPoints == null) {
+            this.dataPoints = new HashSet<>();
+        } else {
+            this.dataPoints.clear();
+        }
+        this.dataPoints.addAll(datapoints);
+    }
+
+    public void setDataPoints(Set<DataPoint> dataPoints) {
+        this.dataPoints = dataPoints;
+    }
 }
