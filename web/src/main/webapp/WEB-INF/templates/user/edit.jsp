@@ -6,7 +6,7 @@
     <form:form modelAttribute="runescapeUser" method="post"
                action="${pageContext.request.contextPath}/user/${runescapeUser.id}/edit">
         <div class="form-group row">
-            <label for="id" class="col-sm-4">Email:</label>
+            <label for="id" class="col-sm-4">ID:</label>
             <form:input path="id" class="form-group col-sm-8" autocomplete="false" disabled="true"/>
             <form:errors path="id" cssClass="error"/>
         </div>

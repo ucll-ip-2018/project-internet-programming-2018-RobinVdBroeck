@@ -73,11 +73,7 @@ public class RunescapeUserDatabaseJPA implements RunescapeUserDatabase {
         EntityTransaction transaction = entityManager.getTransaction();
         transaction.begin();
         try {
-            Query query = entityManager.createQuery("UPDATE RunescapeUser SET email = :email, " +
-                    "displayName = :displayname WHERE id = :id");
-            query.setParameter("email", user.getEmail());
-            query.setParameter("displayname", user.getDisplayName());
-            query.setParameter("id", user.getId());
+            entityManager.merge(user);
             transaction.commit();
         } catch (Exception e) {
             transaction.rollback();

@@ -34,9 +34,9 @@ public class RunescapeUserController {
         return new ModelAndView("user/create", "runescapeUser", new RunescapeUser());
     }
 
-    @PostMapping(value="/create")
+    @PostMapping(value = "/create")
     public String save(@Valid RunescapeUser user, BindingResult result) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "user/create";
         }
         dataPointService.addUser(user);
@@ -46,7 +46,7 @@ public class RunescapeUserController {
     @GetMapping("/{id}")
     public ModelAndView show(@PathVariable int id) {
         Optional<RunescapeUser> user = dataPointService.getUser(id);
-        if(user.isPresent()) {
+        if (user.isPresent()) {
             return new ModelAndView("user/show", "runescapeUser", user.get());
         }
         throw new ResourceNotFoundException();
@@ -54,16 +54,14 @@ public class RunescapeUserController {
 
     @GetMapping("/{id}/edit")
     public ModelAndView edit(@PathVariable int id) {
-        Optional<RunescapeUser> user = dataPointService.getUser(id);
-        if(user.isPresent()) {
-            return new ModelAndView("user/edit", "runescapeUser", user.get());
-        }
-        throw new ResourceNotFoundException();
+        return dataPointService.getUser(id)
+                .map((user) -> new ModelAndView("user/edit", "runescapeUser", user))
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     @PostMapping("/{id}/edit")
     public String editPost(@PathVariable int id, @Valid RunescapeUser user, BindingResult result) {
-        if(result.hasErrors()) {
+        if (result.hasErrors()) {
             return "user/" + user.getId() + "/edit";
         }
         dataPointService.updateUser(user);
@@ -73,11 +71,11 @@ public class RunescapeUserController {
 
     @GetMapping("{id}/delete")
     public String delete(@PathVariable int id) {
-        Optional<RunescapeUser> user = dataPointService.getUser(id);
-        if(!user.isPresent()) {
-            throw new ResourceNotFoundException();
-        }
-        dataPointService.deleteUser(user.get());
-        return "redirect:/user/";
+        return dataPointService.getUser(id)
+                .map((user) -> {
+                    dataPointService.deleteUser(user);
+                    return "redirect:/user/";
+                })
+                .orElseThrow(ResourceNotFoundException::new);
     }
 }
