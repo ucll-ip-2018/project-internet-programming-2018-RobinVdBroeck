@@ -10,5 +10,5 @@ RUN mvn -T 1C install
 COPY . /usr/src/app
 RUN mvn package -Dmaven.skip.test=true
 
-FROM tomcat:9-jre8-slim
-COPY --from=builder /usr/src/app/web/target/runetracker.war /usr/local/tomcat/webapps/runetracker.war
+FROM payara/micro
+COPY --from=builder /usr/src/app/web/target/runetracker.war /opt/payara/deployments
