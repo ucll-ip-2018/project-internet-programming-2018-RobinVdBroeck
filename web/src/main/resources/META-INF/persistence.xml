@@ -1,13 +1,13 @@
 <persistence
         xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="RuneTrackerPU" transaction-type="RESOURCE_LOCAL">
-        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <class>be.ucll.runetracker.domain.RunescapeUser</class>
         <class>be.ucll.runetracker.domain.DataPoint</class>
         <class>be.ucll.runetracker.domain.Skill</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://database:5432/runetracker"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/runetracker"/>
             <property name="javax.persistence.jdbc.user" value="runetracker"/>
             <property name="javax.persistence.jdbc.password" value="app"/>
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
