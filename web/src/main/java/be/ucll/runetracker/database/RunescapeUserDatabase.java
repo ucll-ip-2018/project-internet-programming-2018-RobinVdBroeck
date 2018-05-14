@@ -3,8 +3,8 @@ package be.ucll.runetracker.database;
 import be.ucll.runetracker.domain.RunescapeUser;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public interface RunescapeUserDatabase {
     void add(RunescapeUser user);
@@ -15,7 +15,7 @@ public interface RunescapeUserDatabase {
 
     Optional<RunescapeUser> get(int id);
 
-    List<RunescapeUser> all();
+    Stream<RunescapeUser> all();
 
     void update(RunescapeUser user);
 }

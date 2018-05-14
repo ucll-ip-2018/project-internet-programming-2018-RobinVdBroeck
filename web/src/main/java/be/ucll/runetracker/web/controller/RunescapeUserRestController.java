@@ -4,12 +4,11 @@ import be.ucll.runetracker.database.DataPointService;
 import be.ucll.runetracker.domain.RunescapeUser;
 import be.ucll.runetracker.web.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping(value = "/api/user")
@@ -23,7 +22,7 @@ public class RunescapeUserRestController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<RunescapeUser> getUsers() {
-        return service.getAllUsers();
+        return service.getAllUsers().collect(Collectors.toList());
     }
 
     @RequestMapping(method = RequestMethod.POST)

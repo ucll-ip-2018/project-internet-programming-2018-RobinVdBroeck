@@ -26,7 +26,7 @@ public class RunescapeUserController {
 
     @GetMapping
     public ModelAndView index() {
-        return new ModelAndView("user/index", "users", dataPointService.getAllUsers());
+        return new ModelAndView("user/index", "users", dataPointService.getAllUsers().toArray());
     }
 
     @GetMapping(value = "/create")

@@ -4,8 +4,8 @@ import be.ucll.runetracker.domain.DataPoint;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class DataPointDatabaseJPA implements DataPointDatabase {
     private EntityManager entityManager;
@@ -64,7 +64,7 @@ public class DataPointDatabaseJPA implements DataPointDatabase {
     }
 
     @Override
-    public List<DataPoint> all() {
-        return entityManager.createQuery("SELECT datapoint FROM DataPoint datapoint", DataPoint.class).getResultList();
+    public Stream<DataPoint> all() {
+        return entityManager.createQuery("SELECT datapoint FROM DataPoint datapoint", DataPoint.class).getResultStream();
     }
 }

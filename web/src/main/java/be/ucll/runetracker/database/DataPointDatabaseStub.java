@@ -4,6 +4,7 @@ import be.ucll.runetracker.domain.DataPoint;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 public class DataPointDatabaseStub implements DataPointDatabase {
     private Map<Integer, DataPoint> dataPoints;
@@ -44,7 +45,7 @@ public class DataPointDatabaseStub implements DataPointDatabase {
     }
 
     @Override
-    public List<DataPoint> all() {
-        return new ArrayList<>(dataPoints.values());
+    public Stream<DataPoint> all() {
+        return dataPoints.values().stream();
     }
 }

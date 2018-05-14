@@ -4,8 +4,8 @@ import be.ucll.runetracker.domain.RunescapeUser;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class RunescapeUserDatabaseJPA implements RunescapeUserDatabase {
     private final EntityManager entityManager;
@@ -64,8 +64,8 @@ public class RunescapeUserDatabaseJPA implements RunescapeUserDatabase {
     }
 
     @Override
-    public List<RunescapeUser> all() {
-        return entityManager.createQuery("SELECT u FROM RunescapeUser u", RunescapeUser.class).getResultList();
+    public Stream<RunescapeUser> all() {
+        return entityManager.createQuery("SELECT u FROM RunescapeUser u", RunescapeUser.class).getResultStream();
     }
 
     @Override

@@ -4,8 +4,8 @@ import be.ucll.runetracker.domain.Skill;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class SkillDatabaseJPA implements SkillDatabase {
     private final EntityManager entityManager;
@@ -63,7 +63,7 @@ public class SkillDatabaseJPA implements SkillDatabase {
     }
 
     @Override
-    public List<Skill> all() {
-        return entityManager.createQuery("SELECT skill FROM Skill skill", Skill.class).getResultList();
+    public Stream<Skill> all() {
+        return entityManager.createQuery("SELECT skill FROM Skill skill", Skill.class).getResultStream();
     }
 }

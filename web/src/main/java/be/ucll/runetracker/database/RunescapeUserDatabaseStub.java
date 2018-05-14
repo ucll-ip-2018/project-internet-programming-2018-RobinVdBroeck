@@ -4,6 +4,7 @@ import be.ucll.runetracker.domain.RunescapeUser;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 public class RunescapeUserDatabaseStub implements RunescapeUserDatabase {
     private Map<Integer, RunescapeUser> users = new HashMap<>();
@@ -40,8 +41,8 @@ public class RunescapeUserDatabaseStub implements RunescapeUserDatabase {
     }
 
     @Override
-    public List<RunescapeUser> all() {
-        return new ArrayList<>(users.values());
+    public Stream<RunescapeUser> all() {
+        return users.values().stream();
     }
 
     @Override

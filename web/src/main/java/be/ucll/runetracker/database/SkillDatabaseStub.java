@@ -3,6 +3,7 @@ package be.ucll.runetracker.database;
 import be.ucll.runetracker.domain.Skill;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class SkillDatabaseStub implements SkillDatabase {
     private Map<String, Skill> skills = new HashMap<>();
@@ -35,7 +36,7 @@ public class SkillDatabaseStub implements SkillDatabase {
     }
 
     @Override
-    public List<Skill> all() {
-        return new ArrayList<>(skills.values());
+    public Stream<Skill> all() {
+        return skills.values().stream();
     }
 }

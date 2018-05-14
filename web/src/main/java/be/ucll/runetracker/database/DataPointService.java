@@ -6,6 +6,7 @@ import be.ucll.runetracker.domain.Skill;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 public class DataPointService {
     private RunescapeUserDatabase runescapeUserDatabase;
@@ -50,7 +51,7 @@ public class DataPointService {
         return runescapeUserDatabase.get(id);
     }
 
-    public List<RunescapeUser> getAllUsers() {
+    public Stream<RunescapeUser> getAllUsers() {
         return runescapeUserDatabase.all();
     }
 
@@ -71,7 +72,7 @@ public class DataPointService {
         return dataPointDatabase.get(id);
     }
 
-    public List<DataPoint> getAllDatapoints() {
+    public Stream<DataPoint> getAllDatapoints() {
         return dataPointDatabase.all();
     }
 
@@ -88,7 +89,7 @@ public class DataPointService {
         return skillDatabase.get(name);
     }
 
-    public List<Skill> getAllSkills() {
+    public Stream<Skill> getAllSkills() {
         return skillDatabase.all();
     }
 

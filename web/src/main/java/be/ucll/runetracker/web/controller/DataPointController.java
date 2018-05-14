@@ -23,8 +23,7 @@ public class DataPointController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getDataPoints() {
-        List<DataPoint> dataPoints = dataPointService.getAllDatapoints();
-        return new ModelAndView("datapoint/index", "datapoint", dataPoints);
+        return new ModelAndView("datapoint/index", "datapoint", dataPointService.getAllDatapoints().toArray());
     }
 }
 
