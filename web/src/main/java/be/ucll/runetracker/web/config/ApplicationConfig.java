@@ -1,6 +1,7 @@
 package be.ucll.runetracker.web.config;
 
 import be.ucll.runetracker.database.*;
+import be.ucll.runetracker.services.HighScoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

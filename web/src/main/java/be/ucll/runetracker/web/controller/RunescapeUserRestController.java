@@ -2,10 +2,9 @@ package be.ucll.runetracker.web.controller;
 
 import be.ucll.runetracker.database.DatabaseService;
 import be.ucll.runetracker.domain.DataPoint;
-import be.ucll.runetracker.domain.DataPointEntry;
 import be.ucll.runetracker.domain.RunescapeUser;
 import be.ucll.runetracker.web.ResourceNotFoundException;
-import be.ucll.runetracker.web.config.HighScoresService;
+import be.ucll.runetracker.services.HighScoresService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;

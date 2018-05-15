@@ -1,4 +1,4 @@
-package be.ucll.runetracker.web.config;
+package be.ucll.runetracker.services;
 
 import be.ucll.runetracker.domain.DataPointEntry;
 import be.ucll.runetracker.domain.Skill;
@@ -8,10 +8,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.InvalidPropertiesFormatException;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class HighScoresService {
     private static final Logger logger = Logger.getLogger(HighScoresService.class.toString());
@@ -47,30 +48,31 @@ public class HighScoresService {
         try {
             URL url = new URL("http://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=" + username);
             URLConnection connection = url.openConnection();
+            logger.info("Fetching stats of " + username);
             try (BufferedReader in = new BufferedReader(new InputStreamReader(
                     connection.getInputStream()))) {
-                List<DataPointEntry> entries = new ArrayList<>(skillOrder.length);
-                String inputLine;
-                for (int i = 0; (inputLine = in.readLine()) != null; i++) {
-                    if (i >= skillOrder.length) {
-                        break;
-                    }
-                    String[] parts = inputLine.split(",");
-                    if (parts.length != 3) {
-                        throw new InvalidPropertiesFormatException("Not all information is returned by the runescape api on line: " + i + " with data:" + inputLine);
-                    }
-                    int[] parsed = new int[parts.length];
-                    for (int x = 0; x < parts.length; x++) {
-                        parsed[x] = Integer.parseInt(parts[x]);
-                    }
-                    DataPointEntry entry = new DataPointEntry(skillOrder[i], parsed[0], (short) parsed[1], parsed[2]);
-                    entries.add(entry);
-                }
-                logger.info("Fetched stats of " + username);
-                return entries;
+                final AtomicInteger atomicInteger = new AtomicInteger();
+
+                return in.lines()
+                        .limit(skillOrder.length)
+                        .map(line -> line.split(","))
+                        .map(Arrays::asList)
+                        .map(this::convertStringsToIntegers)
+                        .map(parsed -> new DataPointEntry(skillOrder[atomicInteger.getAndIncrement()], parsed.get(0), parsed.get(1).shortValue(), parsed.get(2)))
+                        .collect(Collectors.toList());
+
             }
         } catch (IOException e) {
             throw new HighscoreServiceException(e);
         }
+    }
+
+    private List<Integer> convertStringsToIntegers(Collection<String> strings) {
+        List<Integer> parsed = new ArrayList<>(strings.size());
+        for(String string : strings) {
+            int parsedInt = Integer.parseInt(string);
+            parsed.add(parsedInt);
+        }
+        return parsed;
     }
 }

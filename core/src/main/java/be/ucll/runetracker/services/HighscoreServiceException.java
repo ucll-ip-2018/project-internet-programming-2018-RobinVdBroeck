@@ -1,4 +1,4 @@
-package be.ucll.runetracker.web.config;
+package be.ucll.runetracker.services;
 
 public class HighscoreServiceException extends RuntimeException {
     public HighscoreServiceException() {
