@@ -66,13 +66,7 @@ public class HighScoresService {
                     DataPointEntry entry = new DataPointEntry(skillOrder[i], parsed[0], (short) parsed[1], parsed[2]);
                     entries.add(entry);
                 }
-                StringBuilder builder = new StringBuilder();
-                for(DataPointEntry stat : entries) {
-                    builder.append(stat.toString());
-                    builder.append("\n");
-                }
                 logger.info("Fetched stats of " + username);
-                logger.info(builder.toString());
                 return entries;
             }
         } catch (IOException e) {

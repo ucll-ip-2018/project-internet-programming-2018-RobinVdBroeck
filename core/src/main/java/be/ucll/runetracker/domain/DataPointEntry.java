@@ -9,11 +9,7 @@ public class DataPointEntry {
     @GeneratedValue
     private Integer id;
 
-    @ManyToOne
-    private DataPointEntry dataPointEntry;
-
     @Min(1)
-    @Max(99)
     private short level;
 
     @Enumerated
@@ -27,7 +23,8 @@ public class DataPointEntry {
     @Positive
     private int rank;
 
-    public DataPointEntry() {}
+    public DataPointEntry() {
+    }
 
     public DataPointEntry(Skill skill, int rank, short level, int experience) {
         setSkill(skill);
@@ -43,14 +40,6 @@ public class DataPointEntry {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public DataPointEntry getDataPointEntry() {
-        return dataPointEntry;
-    }
-
-    public void setDataPointEntry(DataPointEntry dataPointEntry) {
-        this.dataPointEntry = dataPointEntry;
     }
 
     public Skill getSkill() {
@@ -86,6 +75,6 @@ public class DataPointEntry {
     }
 
     public String toString() {
-        return "Skill: " + getSkill() + " Level:" + getLevel() + " Rank: " + getRank() + " exp:" + getExperience();
+        return getSkill() + " - Level: " + getLevel() + " Rank: " + getRank() + " exp:" + getExperience();
     }
 }

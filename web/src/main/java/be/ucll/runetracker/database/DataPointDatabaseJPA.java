@@ -5,10 +5,12 @@ import be.ucll.runetracker.domain.DataPoint;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 public class DataPointDatabaseJPA implements DataPointDatabase {
     private EntityManager entityManager;
+    private final static Logger logger = Logger.getLogger(DataPointDatabaseJPA.class.toGenericString());
 
     public DataPointDatabaseJPA() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(
@@ -24,7 +26,8 @@ public class DataPointDatabaseJPA implements DataPointDatabase {
         try {
             entityManager.persist(dataPoint);
             transaction.commit();
-        } catch (Exception e) {
+        } catch (RollbackException e) {
+            logger.severe(e.toString());
             transaction.rollback();
         }
     }
@@ -40,6 +43,7 @@ public class DataPointDatabaseJPA implements DataPointDatabase {
             }
             transaction.commit();
         } catch(Exception e) {
+            logger.severe(e.toString());
             transaction.rollback();
         } finally {
             entityManager.setFlushMode(FlushModeType.AUTO);
@@ -54,6 +58,7 @@ public class DataPointDatabaseJPA implements DataPointDatabase {
             entityManager.remove(dataPoint);
             transaction.commit();
         } catch(Exception e) {
+            logger.severe(e.toString());
             transaction.rollback();
         }
     }

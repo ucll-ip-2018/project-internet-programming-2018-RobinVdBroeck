@@ -1,6 +1,7 @@
 package be.ucll.runetracker.web.controller;
 
 import be.ucll.runetracker.database.DatabaseService;
+import be.ucll.runetracker.domain.DataPoint;
 import be.ucll.runetracker.domain.DataPointEntry;
 import be.ucll.runetracker.domain.RunescapeUser;
 import be.ucll.runetracker.web.ResourceNotFoundException;
@@ -9,39 +10,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Controller
 @RequestMapping(value = "/api/user")
 public class RunescapeUserRestController {
-    private final DatabaseService service;
+    private final DatabaseService databaseService;
+    private final HighScoresService highScoresService;
 
-    public RunescapeUserRestController(@Autowired DatabaseService service) {
-        this.service = service;
+    public RunescapeUserRestController(@Autowired DatabaseService databaseService, @Autowired HighScoresService highScoresService) {
+        this.databaseService = databaseService;
+        this.highScoresService = highScoresService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<RunescapeUser> getUsers() {
-        return service.getAllUsers().collect(Collectors.toList());
+        return databaseService.getAllUsers().collect(Collectors.toList());
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public RunescapeUser createUser(@RequestBody RunescapeUser user) {
-        service.addUser(user);
+        databaseService.addUser(user);
 
-        return service.getUser(user.getId()).orElseThrow(ResourceNotFoundException::new);
+        return databaseService.getUser(user.getId()).orElseThrow(ResourceNotFoundException::new);
     }
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/{id}")
     @ResponseBody
     public RunescapeUser getUser(@PathVariable int id) {
-        return service.getUser(id).orElseThrow(ResourceNotFoundException::new);
+        return databaseService.getUser(id).orElseThrow(ResourceNotFoundException::new);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/{id}")
@@ -51,24 +53,28 @@ public class RunescapeUserRestController {
             // TODO: throw the right error
             throw new RuntimeException();
         }
-        service.updateUser(user);
+        databaseService.updateUser(user);
 
-        return service.getUser(user.getId()).orElseThrow(ResourceNotFoundException::new);
+        return databaseService.getUser(user.getId()).orElseThrow(ResourceNotFoundException::new);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{id}")
     @ResponseBody
     public void deleteUser(@PathVariable int id) {
-        service.deleteUser(service.getUser(id).orElseThrow(ResourceNotFoundException::new));
+        databaseService.deleteUser(databaseService.getUser(id).orElseThrow(ResourceNotFoundException::new));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/stats")
-    public List<DataPointEntry> stats(@PathVariable int id) {
-        RunescapeUser user = service.getUser(id).orElseThrow(ResourceNotFoundException::new);
-        HighScoresService highScoresService = new HighScoresService();
+    @RequestMapping(method = RequestMethod.GET, value="/{id}/createpoint")
+    @ResponseBody
+    public DataPoint stats(@PathVariable int id) {
+        RunescapeUser user = databaseService.getUser(id).orElseThrow(ResourceNotFoundException::new);
 
-        List<DataPointEntry> stats =  highScoresService.getStats(user.getDisplayName());
-        return stats;
+        DataPoint dataPoint = new DataPoint();
+        dataPoint.setUser(user);
+        dataPoint.setDateTime(LocalDateTime.now());
+        dataPoint.setEntries(highScoresService.getStats(user.getDisplayName()));
+        databaseService.addDatapoint(dataPoint);
+
+        return dataPoint;
     }
-
 }

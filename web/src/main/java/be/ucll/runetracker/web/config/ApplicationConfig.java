@@ -12,11 +12,9 @@ public class ApplicationConfig {
         return new RunescapeUserDatabaseJPA();
     }
 
-
     @Bean
     public DataPointDatabase dataPointDatabase() {
         return new DataPointDatabaseJPA();
-
     }
 
     @Bean
@@ -25,5 +23,11 @@ public class ApplicationConfig {
             @Autowired DataPointDatabase dataPointDatabase
     ) {
         return new DatabaseService(runescapeUserDatabase, dataPointDatabase);
+    }
+
+
+    @Bean
+    public HighScoresService highScoresService() {
+        return new HighScoresService();
     }
 }

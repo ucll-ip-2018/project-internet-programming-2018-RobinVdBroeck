@@ -25,7 +25,7 @@ public class RunescapeUser {
     @Column(unique = true)
     private String displayName;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<DataPoint> dataPoints;
 
     public RunescapeUser() {

@@ -16,7 +16,7 @@ public class DataPoint {
     private Integer id;
     private LocalDateTime dateTime;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private Set<DataPointEntry> entries;
 
     @ManyToOne
