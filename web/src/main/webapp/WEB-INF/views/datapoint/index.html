@@ -1,0 +1,38 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div class="container">
+    <h1>Data points</h1>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>User</th>
+            <th>When</th>
+            <th>Options</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="datapoint" type="be.ucll.runetracker.domain.DataPoint"*/-->
+        <tr th:each="entry : ${datapoint}">
+            <td th:text="${entry.user.email}">Email</td>
+            <td th:text="${entry.formatedDateTime}"></td>
+            <td>
+                <button type="button" class="btn btn-primary">View</button>
+                <button type="button" class="btn btn-primary">Edit</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a href="#">Add a datapoint</a>
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

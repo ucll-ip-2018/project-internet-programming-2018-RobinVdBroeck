@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div class="container">
+    <h1>Users</h1>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Email</th>
+            <th>Display Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--/*@thymesVar id="users" type="be.ucll.runetracker.domain.RunescapeUser[]"*/-->
+        <!--/*@thymesVar id="user" type="be.ucll.runetracker.domain.RunescapeUser"*/-->
+        <tr th:each="user : ${users}">
+            <td th:text="${user.email}">
+            </td>
+            <td th:text="${user.displayName}">
+            </td>
+            <td>
+                <a th:href="@{'/user/' + ${user.id}}" class="btn btn-primary">
+                    View
+                </a>
+                <a th:href="@{'/user/' + ${user.id} + '/edit'}" class="btn btn-primary">
+                    Edit
+                </a>
+                <a th:href="@{'/user/' + ${user.id} + '/delete'}" class="btn btn-danger">
+                    Delete
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/user/create}">Add a user</a>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

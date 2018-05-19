@@ -1,0 +1,43 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div class="container">
+    <h1>Create User</h1>
+
+    <!--/*@thymesVar id="runescapeUser" type="be.ucll.runetracker.domain.RunescapeUser"*/-->
+    <form th:object="${runescapeUser}" method="post"
+          th:action="@{'/user/' + ${runescapeUser.id} + '/edit'}">
+        <div class="form-group row">
+            <label th:for="${#ids.next('id')}" class="col-sm-4">ID:</label>
+            <input type="text" th:field="*{id}" class="form-group col-sm-8" disabled autocomplete="false"/>
+            <ul class="error">
+                <li th:each="err : ${#fields.errors('id')}" th:text="${err}"></li>
+            </ul>
+        </div>
+
+        <div class="form-group row">
+            <label th:for="${#ids.next('email')}" class="col-sm-4">Email:</label>
+            <input type="text" th:field="*{email}" class="form-group col-sm-8"/>
+            <ul class="error">
+                <li th:each="err : ${#fields.errors('email')}" th:text="${err}"></li>
+            </ul>
+        </div>
+        <div class="form-group row">
+            <label th:for="${#ids.next('displayName')}" class="col-sm-4">Display name:</label>
+            <input type="text" th:field="*{displayName}" class="form-group col-sm-8"/>
+            <ul class="error">
+                <li th:each="err : ${#fields.errors('displayName')}" th:text="${err}"></li>
+            </ul>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </div>
+    </form>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>

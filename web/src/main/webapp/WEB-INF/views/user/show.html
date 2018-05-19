@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+</head>
+
+<body>
+<header th:replace="fragments/header :: header"></header>
+<div class="container">
+    <!--/*@thymesVar id="runescapeUser" type="be.ucll.runetracker.domain.RunescapeUser"*/-->
+    <p>
+        <strong>Id:</strong>
+        <span th:text="${runescapeUser.id}"></span>
+    </p>
+    <p>
+        <strong>Email:</strong>
+        <span th:text="${runescapeUser.email}"></span>
+    </p>
+    <p>
+        <strong>Display name:</strong>
+        <span th:text="${runescapeUser.displayName}"></span>
+    </p>
+    <p>
+        <a th:href="@{/user/}">
+            Go back
+        </a>
+    </p>
+</div>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
