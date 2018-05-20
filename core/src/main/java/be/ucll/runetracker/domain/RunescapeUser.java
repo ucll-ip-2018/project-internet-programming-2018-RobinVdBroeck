@@ -66,7 +66,7 @@ public class RunescapeUser {
     }
 
     public void setDataPoints(Collection<DataPoint> datapoints) {
-        if(this.dataPoints == null) {
+        if (this.dataPoints == null) {
             this.dataPoints = new HashSet<>();
         } else {
             this.dataPoints.clear();
