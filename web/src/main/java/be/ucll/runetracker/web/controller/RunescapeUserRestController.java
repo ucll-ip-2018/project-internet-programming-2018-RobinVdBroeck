@@ -63,15 +63,16 @@ public class RunescapeUserRestController {
         databaseService.deleteUser(databaseService.getUser(id).orElseThrow(ResourceNotFoundException::new));
     }
 
-    @RequestMapping(method = RequestMethod.GET, value="/{id}/createpoint")
+    @RequestMapping(method = RequestMethod.GET, value = "/{id}/createpoint")
     @ResponseBody
     public DataPoint stats(@PathVariable int id) {
         RunescapeUser user = databaseService.getUser(id).orElseThrow(ResourceNotFoundException::new);
 
-        DataPoint dataPoint = new DataPoint();
-        dataPoint.setUser(user);
-        dataPoint.setDateTime(LocalDateTime.now());
-        dataPoint.setEntries(highScoresService.getStats(user.getDisplayName()));
+        DataPoint dataPoint = DataPoint.createWithUserAndStats(
+                user,
+                highScoresService.getStats(user.getDisplayName())
+        );
+
         databaseService.addDatapoint(dataPoint);
 
         return dataPoint;

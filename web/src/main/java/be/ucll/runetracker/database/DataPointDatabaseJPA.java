@@ -1,16 +1,17 @@
 package be.ucll.runetracker.database;
 
 import be.ucll.runetracker.domain.DataPoint;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Optional;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 public class DataPointDatabaseJPA implements DataPointDatabase {
     private EntityManager entityManager;
-    private final static Logger logger = Logger.getLogger(DataPointDatabaseJPA.class.toGenericString());
+    private final static Logger logger = LoggerFactory.getLogger(DataPointDatabaseJPA.class);
 
     public DataPointDatabaseJPA() {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(
@@ -27,7 +28,7 @@ public class DataPointDatabaseJPA implements DataPointDatabase {
             entityManager.persist(dataPoint);
             transaction.commit();
         } catch (RollbackException e) {
-            logger.severe(e.toString());
+            logger.error(e.toString());
             transaction.rollback();
         }
     }
@@ -38,12 +39,12 @@ public class DataPointDatabaseJPA implements DataPointDatabase {
         transaction.begin();
         try {
             entityManager.setFlushMode(FlushModeType.COMMIT);
-            for(DataPoint dataPoint: dataPoints) {
+            for (DataPoint dataPoint : dataPoints) {
                 entityManager.persist(dataPoint);
             }
             transaction.commit();
-        } catch(Exception e) {
-            logger.severe(e.toString());
+        } catch (Exception e) {
+            logger.error(e.toString());
             transaction.rollback();
         } finally {
             entityManager.setFlushMode(FlushModeType.AUTO);
@@ -57,8 +58,8 @@ public class DataPointDatabaseJPA implements DataPointDatabase {
         try {
             entityManager.remove(dataPoint);
             transaction.commit();
-        } catch(Exception e) {
-            logger.severe(e.toString());
+        } catch (Exception e) {
+            logger.error(e.toString());
             transaction.rollback();
         }
     }

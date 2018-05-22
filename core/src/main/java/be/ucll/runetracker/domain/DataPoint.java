@@ -34,6 +34,14 @@ public class DataPoint {
         setEntries(entries);
     }
 
+    public static DataPoint createWithUserAndStats(RunescapeUser user, Collection<DataPointEntry> entries) {
+        DataPoint dataPoint = new DataPoint();
+        dataPoint.setUser(user);
+        dataPoint.setDateTime(LocalDateTime.now());
+        dataPoint.setEntries(entries);
+        return dataPoint;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -67,7 +75,7 @@ public class DataPoint {
     }
 
     public void setEntries(Collection<DataPointEntry> entries) {
-        if(this.entries == null) {
+        if (this.entries == null) {
             this.entries = new HashSet<>();
         } else {
             this.entries.clear();

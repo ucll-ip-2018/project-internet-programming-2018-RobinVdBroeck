@@ -7,6 +7,8 @@
 <header th:replace="fragments/header :: header"></header>
 <div class="container">
     <!--/*@thymesVar id="runescapeUser" type="be.ucll.runetracker.domain.RunescapeUser"*/-->
+    <h1 th:text="${runescapeUser.displayName}"></h1>
+    <h2>Information</h2>
     <p>
         <strong>Id:</strong>
         <span th:text="${runescapeUser.id}"></span>
@@ -19,7 +21,23 @@
         <strong>Display name:</strong>
         <span th:text="${runescapeUser.displayName}"></span>
     </p>
+
+    <h2>Datapoints</h2>
+    <ol>
+        <li th:if="${runescapeUser.dataPoints.isEmpty()}">
+            No datapoints available
+        </li>
+        <li th:each="dataPoint : ${runescapeUser.dataPoints.toArray()}">
+            <a th:href="@{'/datapoint/' + ${dataPoint.id}}" th:text="${dataPoint.formatedDateTime}"></a>
+        </li>
+    </ol>
+
+
     <p>
+        <a th:href="@{'/user/' + ${runescapeUser.id} + '/createDatapoint'}">
+            Create a new datapoint
+        </a>
+        |
         <a th:href="@{/user/}">
             Go back
         </a>

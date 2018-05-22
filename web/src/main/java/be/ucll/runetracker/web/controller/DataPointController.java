@@ -3,6 +3,8 @@ package be.ucll.runetracker.web.controller;
 
 import be.ucll.runetracker.database.DatabaseService;
 import be.ucll.runetracker.web.ResourceNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +24,17 @@ public class DataPointController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView index() {
-        return new ModelAndView("datapoint/index", "datapoint", databaseService.getAllDatapoints().toArray());
+        return new ModelAndView(
+                "datapoint/index",
+                "datapoints",
+                databaseService.getAllDatapoints().toArray()
+        );
     }
 
-    @RequestMapping(path = "/:id", method = RequestMethod.GET)
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public ModelAndView show(@PathVariable int id) {
         return databaseService.getDatapoint(id)
-                .map(dataPoint -> new ModelAndView("datapoint/show", "datapoint", dataPoint))
+                .map(dataPoint -> new ModelAndView("datapoint/show", "dataPoint", dataPoint))
                 .orElseThrow(ResourceNotFoundException::new);
     }
 }

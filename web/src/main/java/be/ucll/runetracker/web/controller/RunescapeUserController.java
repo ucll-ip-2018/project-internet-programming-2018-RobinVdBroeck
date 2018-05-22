@@ -1,7 +1,10 @@
 package be.ucll.runetracker.web.controller;
 
 import be.ucll.runetracker.database.DatabaseService;
+import be.ucll.runetracker.domain.DataPoint;
+import be.ucll.runetracker.domain.DataPointEntry;
 import be.ucll.runetracker.domain.RunescapeUser;
+import be.ucll.runetracker.services.HighScoresService;
 import be.ucll.runetracker.web.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,15 +16,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/user")
 public class RunescapeUserController {
     private DatabaseService databaseService;
+    private HighScoresService highScoresService;
 
-    public RunescapeUserController(@Autowired DatabaseService databaseService) {
+    public RunescapeUserController(@Autowired DatabaseService databaseService, @Autowired HighScoresService highScoresService) {
         this.databaseService = databaseService;
+        this.highScoresService = highScoresService;
     }
 
     @GetMapping
@@ -75,6 +81,18 @@ public class RunescapeUserController {
                 .map((user) -> {
                     databaseService.deleteUser(user);
                     return "redirect:/user/";
+                })
+                .orElseThrow(ResourceNotFoundException::new);
+    }
+
+    @GetMapping("{id}/createDatapoint")
+    public String createDatapoint(@PathVariable int id) {
+        return databaseService.getUser(id)
+                .map(user -> {
+                    List<DataPointEntry> stats = highScoresService.getStats(user.getDisplayName());
+                    DataPoint dataPoint = DataPoint.createWithUserAndStats(user, stats);
+                    databaseService.addDatapoint(dataPoint);
+                    return "redirect:/datapoint/" + dataPoint.getId();
                 })
                 .orElseThrow(ResourceNotFoundException::new);
     }

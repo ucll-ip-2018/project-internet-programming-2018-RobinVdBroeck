@@ -1,15 +1,10 @@
 package be.ucll.runetracker.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class RunescapeUser {
@@ -64,20 +59,20 @@ public class RunescapeUser {
         return this.displayName;
     }
 
-    public Set<DataPoint> getDataPoints() {
-        return dataPoints;
+    public void addDataPoint(DataPoint point) {
+        this.dataPoints.add(point);
     }
 
     public void setDataPoints(Collection<DataPoint> datapoints) {
         if (this.dataPoints == null) {
             this.dataPoints = new HashSet<>();
         } else {
-            this.dataPoints.clear();
+            datapoints.clear();
         }
         this.dataPoints.addAll(datapoints);
     }
 
-    public void setDataPoints(Set<DataPoint> dataPoints) {
-        this.dataPoints = dataPoints;
+    public Collection<DataPoint> getDataPoints() {
+        return dataPoints;
     }
 }
