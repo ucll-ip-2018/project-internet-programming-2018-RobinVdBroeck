@@ -6,7 +6,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.*;
 
-@Entity
+@Entity(name = "RunescapeUser")
 public class RunescapeUser {
     @Id
     @GeneratedValue
@@ -23,7 +23,10 @@ public class RunescapeUser {
     @Column(unique = true)
     private String displayName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL
+    )
     private Set<DataPoint> dataPoints;
 
     public RunescapeUser() {

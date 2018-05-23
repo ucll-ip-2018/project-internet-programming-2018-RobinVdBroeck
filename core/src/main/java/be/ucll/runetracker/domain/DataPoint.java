@@ -19,7 +19,7 @@ public class DataPoint {
     @OneToMany(cascade = CascadeType.ALL)
     private Set<DataPointEntry> entries;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @NotNull
     private RunescapeUser user;
 

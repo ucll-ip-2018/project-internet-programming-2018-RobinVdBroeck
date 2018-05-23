@@ -82,6 +82,9 @@ public class DatabaseService {
     public void addDatapoint(DataPoint dataPoint) {
         logger.info("Adding datapoint");
         dataPointDatabase.add(dataPoint);
+        RunescapeUser user = dataPoint.getUser();
+        user.addDataPoint(dataPoint);
+        runescapeUserDatabase.update(user);
     }
 
     public void deleteDatapoint(DataPoint dataPoint) {
