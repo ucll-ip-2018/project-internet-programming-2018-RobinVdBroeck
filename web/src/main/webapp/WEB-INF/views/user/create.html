@@ -9,6 +9,10 @@
     <h1>Create User</h1>
     <!--/*@thymesVar id="runescapeUser" type="be.ucll.runetracker.domain.RunescapeUser"*/-->
     <form th:object="${runescapeUser}" method="post" th:action="@{/user/create}">
+        <input
+                type="hidden"
+                th:name="${_csrf.parameterName}"
+                th:value="${_csrf.token}"/>
         <div class="form-group row">
             <label th:for="${#ids.next('email')}" class="col-sm-4">Email:</label>
             <input type="text" th:field="*{email}" class="form-group col-sm-8"/>

@@ -12,10 +12,10 @@
         <strong>ID:</strong>
         <span th:text="${dataPoint.id}"></span>
     </p>
-    <!--<p>-->
-        <!--<strong>User:</strong>-->
-        <!--<a th:href="@{'/user/' + ${dataPoint.user.id}}" th:text="${dataPoint.user.displayName}"></a>-->
-    <!--</p>-->
+    <p>
+        <strong>User:</strong>
+        <a th:href="@{'/user/' + ${dataPoint.user.id}}" th:text="${dataPoint.user.displayName}"></a>
+    </p>
     <p>
         <strong>Time</strong>
         <span th:text="${dataPoint.formatedDateTime}"></span>
@@ -24,28 +24,28 @@
     <h2>Skills</h2>
     <table class="table table-bordered table-striped">
         <thead>
-            <tr>
-                <th>
-                    Skill
-                </th>
-                <th>
-                    Rank
-                </th>
-                <th>
-                    Level
-                </th>
-                <th>
-                    Experience
-                </th>
-            </tr>
+        <tr>
+            <th>
+                Skill
+            </th>
+            <th>
+                Rank
+            </th>
+            <th>
+                Level
+            </th>
+            <th>
+                Experience
+            </th>
+        </tr>
         </thead>
         <tbody>
-            <tr th:each="entry: ${dataPoint.entries}">
-                <td th:text="${entry.skill}"></td>
-                <td th:text="${entry.rank}"></td>
-                <td th:text="${entry.level}"></td>
-                <td th:text="${entry.experience}"></td>
-            </tr>
+        <tr th:each="entry: ${dataPoint.entries}">
+            <td th:text="${entry.skill}"></td>
+            <td th:text="${entry.rank}"></td>
+            <td th:text="${entry.level}"></td>
+            <td th:text="${entry.experience}"></td>
+        </tr>
         </tbody>
     </table>
 

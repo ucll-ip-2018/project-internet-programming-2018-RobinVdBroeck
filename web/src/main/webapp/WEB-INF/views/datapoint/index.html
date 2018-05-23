@@ -20,8 +20,7 @@
         <!--/*@thymesVar id="datapoints" type="be.ucll.runetracker.domain.DataPoint[]"*/-->
         <!--/*@thymesVar id="entry" type="be.ucll.runetracker.domain.DataPoint"*/-->
         <tr th:each="entry : ${datapoints}">
-            <!-- <td th:text="${entry.user.email}">Email</td> !-->
-            <td>Hello</td>
+            <td th:text="${entry.user.email}">Email</td>
             <td th:text="${entry.formatedDateTime}">Datetime</td>
             <td>
                 <a th:href="@{'/datapoint/' + ${entry.id}}" class="btn btn-primary">View</a>
