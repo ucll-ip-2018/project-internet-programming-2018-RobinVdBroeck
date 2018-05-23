@@ -2,6 +2,7 @@ package be.ucll.runetracker.web.config;
 
 import be.ucll.runetracker.database.*;
 import be.ucll.runetracker.services.HighScoresService;
+import be.ucll.runetracker.services.HighScoresServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,6 @@ public class ApplicationConfig {
 
     @Bean
     public HighScoresService highScoresService() {
-        return new HighScoresService();
+        return new HighScoresServiceImpl();
     }
 }
