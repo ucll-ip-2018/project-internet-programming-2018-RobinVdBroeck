@@ -34,32 +34,5 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"
     ></script>
-    <script>
-        /**
-         * Change the local
-         * @param local Which local to use
-         */
-        function switchLocal(local) {
-            document.cookie = 'runetracker_local=' + local;
-            reload()
-        }
-
-        /**
-         * Reload the window
-         */
-        function reload() {
-            window.location = window.location;
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            document.querySelector("#language-english").addEventListener("click", function () {
-                switchLocal("en");
-            });
-
-            document.querySelector("#language-dutch").addEventListener("click", function () {
-                switchLocal("nl")
-            });
-        });
-    </script>
 </head>
 </html>
