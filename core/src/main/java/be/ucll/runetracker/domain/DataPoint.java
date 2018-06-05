@@ -70,10 +70,6 @@ public class DataPoint {
         this.user = user;
     }
 
-    public void setEntries(Set<DataPointEntry> entries) {
-        this.entries = entries;
-    }
-
     public void setEntries(Collection<DataPointEntry> entries) {
         if (this.entries == null) {
             this.entries = new HashSet<>();

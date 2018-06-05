@@ -56,6 +56,11 @@ public class DispatcherServletConfig implements WebMvcConfigurer {
         return localeChangeInterceptor;
     }
 
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(localeChangeInterceptor());
+    }
+
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource source = new ReloadableResourceBundleMessageSource();
