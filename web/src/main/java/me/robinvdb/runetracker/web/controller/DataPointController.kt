@@ -1,7 +1,7 @@
 package me.robinvdb.runetracker.web.controller
 
 
-import me.robinvdb.runetracker.database.DatabaseService
+import me.robinvdb.runetracker.database.DataPointRepository
 import me.robinvdb.runetracker.web.ResourceNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
@@ -13,22 +13,16 @@ import org.springframework.web.servlet.ModelAndView
 
 @Controller
 @RequestMapping("/datapoint")
-class DataPointController(@param:Autowired private val databaseService: DatabaseService) {
+class DataPointController(private val dataPointRepository: DataPointRepository) {
 
     @RequestMapping(method = [(RequestMethod.GET)])
     fun index(): ModelAndView {
-        return ModelAndView(
-                "datapoint/index",
-                "datapoints",
-                databaseService.allDatapoints.toArray()
-        )
+        return ModelAndView("datapoint/index", "datapoints", dataPointRepository.findAll())
     }
 
     @RequestMapping(path = ["/{id}"], method = [(RequestMethod.GET)])
     fun show(@PathVariable id: Int): ModelAndView {
-        return databaseService.getDatapoint(id)
-                .map { dataPoint -> ModelAndView("datapoint/show", "dataPoint", dataPoint) }
-                .orElseThrow { ResourceNotFoundException() }
+        return ModelAndView("datapoint/show", "dataPoint", dataPointRepository.findById(id))
     }
 }
 
