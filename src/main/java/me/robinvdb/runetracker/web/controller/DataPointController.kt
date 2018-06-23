@@ -21,7 +21,7 @@ class DataPointController(private val dataPointRepository: DataPointRepository) 
     }
 
     @RequestMapping(path = ["/{id}"], method = [(RequestMethod.GET)])
-    fun show(@PathVariable id: Int): ModelAndView {
+    fun show(@PathVariable id: Long): ModelAndView {
         return ModelAndView("datapoint/show", "dataPoint", dataPointRepository.findById(id))
     }
 }

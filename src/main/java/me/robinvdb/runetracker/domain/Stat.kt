@@ -4,10 +4,10 @@ import javax.persistence.*
 import javax.validation.constraints.*
 
 @Entity
-class DataPointEntry(
+class Stat(
         @Id
         @GeneratedValue
-        var id: Int? = null,
+        var id: Long? = null,
 
         @NotNull
         var skill: Skill,

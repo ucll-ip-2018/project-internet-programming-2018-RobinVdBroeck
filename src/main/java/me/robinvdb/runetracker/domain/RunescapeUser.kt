@@ -10,23 +10,19 @@ import java.util.*
 data class RunescapeUser(
         @Id
         @GeneratedValue
-        var id: Int? = null,
+        val id: Long? = null,
 
         @Email(message = "Email should be valid")
         @NotNull(message = "Email cannot be null")
         @NotEmpty
         @Column(unique = true)
-        var email: String = "",
+        val email: String = "",
 
         @NotNull
         @NotEmpty
         @Column(unique = true)
-        var displayName: String = "",
+        val displayName: String = "",
 
         @OneToMany(mappedBy = "user", cascade = [(CascadeType.ALL)])
-        var dataPoints: MutableSet<DataPoint> = mutableSetOf()
-) {
-    fun addDataPoint(point: DataPoint) {
-        this.dataPoints.add(point)
-    }
-}
+        val dataPoints: Set<DataPoint> = emptySet()
+)

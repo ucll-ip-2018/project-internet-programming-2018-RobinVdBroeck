@@ -45,19 +45,19 @@ class RunescapeUserController(
     }
 
     @GetMapping("/{id}")
-    fun show(@PathVariable id: Int): ModelAndView {
+    fun show(@PathVariable id: Long): ModelAndView {
         val user = runescapeUserRepository.findById(id).orElseThrow { ResourceNotFoundException() }
         return ModelAndView("user/show", "runescapeUser", user)
     }
 
     @GetMapping("/{id}/edit")
-    fun edit(@PathVariable id: Int): ModelAndView {
+    fun edit(@PathVariable id: Long): ModelAndView {
         val user = runescapeUserRepository.findById(id).orElseThrow { ResourceNotFoundException() }
         return ModelAndView("user/edit", "runescapeUser", user)
     }
 
     @PostMapping("/{id}/edit")
-    fun editPost(@PathVariable id: Int, @Valid user: RunescapeUser, result: BindingResult): String {
+    fun editPost(@PathVariable id: Long, @Valid user: RunescapeUser, result: BindingResult): String {
         if (result.hasErrors()) {
             return "user/" + user.id + "/edit"
         }
@@ -67,15 +67,15 @@ class RunescapeUserController(
 
 
     @GetMapping("{id}/delete")
-    fun delete(@PathVariable id: Int): String {
+    fun delete(@PathVariable id: Long): String {
         runescapeUserRepository.deleteById(id)
         return "redirect:/user/"
     }
 
     @GetMapping("{id}/createDatapoint")
-    fun createDatapoint(@PathVariable id: Int): String {
+    fun createDatapoint(@PathVariable id: Long): String {
         val user = runescapeUserRepository.findById(id).orElseThrow { ResourceNotFoundException() }
-        val stats = highScoresService.getStats(user.displayName)
+        val stats = highScoresService.getStats(user.displayName).toSet()
         val dataPoint = DataPoint(null, LocalDateTime.now(), user, stats)
         dataPointRepository.save(dataPoint)
         return "redirect:/datapoint/${dataPoint.id}"

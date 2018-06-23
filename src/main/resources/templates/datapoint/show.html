@@ -40,7 +40,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="entry: ${dataPoint.entries}">
+        <tr th:each="entry: ${dataPoint.getStats}">
             <td th:text="${entry.skill}"></td>
             <td th:text="${entry.rank}"></td>
             <td th:text="${entry.level}"></td>

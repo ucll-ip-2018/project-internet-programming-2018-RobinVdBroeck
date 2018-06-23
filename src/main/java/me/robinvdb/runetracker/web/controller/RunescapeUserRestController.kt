@@ -34,13 +34,13 @@ class RunescapeUserRestController(
 
     @GetMapping("/{id}")
     @ResponseBody
-    fun getUser(@PathVariable id: Int): RunescapeUser {
+    fun getUser(@PathVariable id: Long): RunescapeUser {
         return runescapeUserRepository.findById(id).orElseThrow {ResourceNotFoundException()}
     }
 
     @PutMapping("/{id}")
     @ResponseBody
-    fun updateUser(@PathVariable id: Int, @RequestBody user: RunescapeUser): RunescapeUser {
+    fun updateUser(@PathVariable id: Long, @RequestBody user: RunescapeUser): RunescapeUser {
         if (user.id != null && id != user.id) {
             // TODO: throw the right error
             throw RuntimeException()
@@ -51,17 +51,17 @@ class RunescapeUserRestController(
 
     @DeleteMapping("/{id}")
     @ResponseBody
-    fun deleteUser(@PathVariable id: Int) {
+    fun deleteUser(@PathVariable id: Long) {
         runescapeUserRepository.deleteById(id)
     }
 
     @GetMapping("/{id}/createpoint")
     @ResponseBody
-    fun stats(@PathVariable id: Int): DataPoint {
+    fun stats(@PathVariable id: Long): DataPoint {
         val user = runescapeUserRepository.findById(id).orElseThrow { ResourceNotFoundException() }
 
         val stats = highScoresService.getStats(user.displayName)
-        val dataPoint = DataPoint(null, LocalDateTime.now(), user, stats)
+        val dataPoint = DataPoint(null, LocalDateTime.now(), user)
 
         dataPointRepository.save(dataPoint)
 
