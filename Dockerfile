@@ -1,14 +1,28 @@
-FROM maven:3.5.3-jdk-8-slim as builder
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-# Install amven dependencies
-COPY pom.xml /usr/src/app/
-COPY core/pom.xml /usr/src/app/core/
-COPY web/pom.xml /usr/src/app/web/
-RUN mvn -T 1C install
+FROM ubuntu:18.04 as builder
 
-COPY . /usr/src/app
-RUN mvn package -Dmaven.skip.test=true
+# Install gradle
+ENV GRADLE_VERSION=4.8.1
+ENV GRADLE_HOME /home/user/gradle-$GRADLE_VERSION
+ENV PATH $GRADLE_HOME/bin:$PATH
+
+RUN apt-get update \
+    && apt-get install -y wget unzip openjdk-8-jdk
+RUN wget -P /home/user/ --quiet https://services.gradle.org/distributions/gradle-$GRADLE_VERSION-bin.zip && \
+    cd /home/user/ && unzip gradle-$GRADLE_VERSION-bin.zip && rm gradle-$GRADLE_VERSION-bin.zip
+
+# Download the dependencies
+ENV APP_HOME=/home/gradle/
+RUN mkdir -p $APP_HOME
+WORKDIR $APP_HOME
+
+COPY settings.gradle build.gradle $APP_HOME
+COPY core/build.gradle $APP_HOME/core/
+COPY web/build.gradle $APP_HOME/web/
+RUN gradle web:war --no-daemon
+
+# Package the application
+COPY . $APP_HOME
+RUN gradle web:war --no-daemon
 
 FROM payara/server-full:5.181
-COPY --from=builder /usr/src/app/web/target/runetracker.war $DEPLOY_DIR
+COPY --from=builder /home/gradle/web/build/libs/web-1.0.0-SNAPSHOT.war $DEPLOY_DIR/runetracker.war
