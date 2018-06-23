@@ -1,6 +1,6 @@
-package me.robinvdb.runetracker.domain;
+package me.robinvdb.runetracker.domain
 
-public enum Skill {
+enum class Skill {
     TOTAL,
     ATTACK,
     STRENGTH,
