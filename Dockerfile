@@ -15,14 +15,15 @@ ENV APP_HOME=/home/gradle/
 RUN mkdir -p $APP_HOME
 WORKDIR $APP_HOME
 
+# First make a jar without any sources to install the dependencies (For better caching on docker)
 COPY settings.gradle build.gradle $APP_HOME
-COPY core/build.gradle $APP_HOME/core/
-COPY web/build.gradle $APP_HOME/web/
-RUN gradle web:war --no-daemon
+RUN gradle bootJar --no-daemon
 
-# Package the application
+# Create the applications
 COPY . $APP_HOME
-RUN gradle web:war --no-daemon
+RUN gradle bootJar --no-daemon
 
-FROM payara/server-full:5.181
-COPY --from=builder /home/gradle/web/build/libs/web-1.0.0-SNAPSHOT.war $DEPLOY_DIR/runetracker.war
+FROM openjdk:8
+WORKDIR /usr/app/
+COPY --from=builder /home/gradle/build/libs/runetracker-1.0.0-SNAPSHOT.jar /usr/app/
+CMD ["java", "-jar", "/usr/app/runetracker-1.0.0-SNAPSHOT.jar"]

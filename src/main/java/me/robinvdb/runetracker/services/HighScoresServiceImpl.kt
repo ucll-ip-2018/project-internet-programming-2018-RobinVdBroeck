@@ -2,6 +2,7 @@ package me.robinvdb.runetracker.services
 
 import me.robinvdb.runetracker.domain.DataPointEntry
 import me.robinvdb.runetracker.domain.Skill
+import org.springframework.stereotype.Service
 
 import java.io.BufferedReader
 import java.io.IOException
@@ -12,6 +13,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import java.util.logging.Logger
 import kotlin.streams.toList
 
+@Service("highscoresService")
 class HighScoresServiceImpl : HighScoresService {
     private val skillOrder = listOf(
             Skill.TOTAL,
@@ -78,3 +80,5 @@ class HighScoresServiceImpl : HighScoresService {
         private val logger = Logger.getLogger(HighScoresServiceImpl::class.java.toString())
     }
 }
+
+

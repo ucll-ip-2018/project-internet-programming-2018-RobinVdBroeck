@@ -6,7 +6,6 @@ import me.robinvdb.runetracker.domain.DataPoint
 import me.robinvdb.runetracker.domain.RunescapeUser
 import me.robinvdb.runetracker.web.ResourceNotFoundException
 import me.robinvdb.runetracker.services.HighScoresService
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
 

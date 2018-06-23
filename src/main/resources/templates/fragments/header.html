@@ -15,25 +15,25 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}" th:text="#{label.home}">
+                        <a class="nav-link" th:href="@{/}">
                             Home
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/datapoint}" th:text="#{label.datapoints}">
+                        <a class="nav-link" th:href="@{/datapoint}">
                             DataPoints
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/user/}" th:text="#{label.users}">
+                        <a class="nav-link" th:href="@{/user/}">
                             Users
                         </a>
                     </li>
                 </ul>
                 <form class="form-inline mt-2 mt-md-0">
-                    <input class="form-control mr-sm-2" type="search" th:placeholder="#{label.lookup.user}"
+                    <input class="form-control mr-sm-2" type="search" placeholder="Lookup user"
                            aria-label="Search">
-                    <button class="btn btn-primary my-2 my-sm-0" type="submit" th:text="#{label.search}">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">
                         Search
                     </button>
                 </form>
