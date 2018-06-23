@@ -16,8 +16,8 @@
         </tr>
         </thead>
         <tbody>
-        <!--/*@thymesVar id="users" type="be.ucll.runetracker.domain.RunescapeUser[]"*/-->
-        <!--/*@thymesVar id="user" type="be.ucll.runetracker.domain.RunescapeUser"*/-->
+        <!--/*@thymesVar id="users" type="me.robinvdb.runetracker.domain.RunescapeUser[]"*/-->
+        <!--/*@thymesVar id="user" type="me.robinvdb.runetracker.domain.RunescapeUser"*/-->
         <tr th:each="user : ${users}">
             <td th:text="${user.email}">
             </td>

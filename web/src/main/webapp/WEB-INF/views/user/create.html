@@ -7,7 +7,7 @@
 <header th:replace="fragments/header :: header"></header>
 <div class="container">
     <h1>Create User</h1>
-    <!--/*@thymesVar id="runescapeUser" type="be.ucll.runetracker.domain.RunescapeUser"*/-->
+    <!--/*@thymesVar id="runescapeUser" type="me.robinvdb.runetracker.domain.RunescapeUser"*/-->
     <form th:object="${runescapeUser}" method="post" th:action="@{/user/create}">
         <div class="form-group row">
             <label th:for="${#ids.next('email')}" class="col-sm-4">Email:</label>

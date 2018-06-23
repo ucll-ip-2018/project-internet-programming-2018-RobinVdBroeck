@@ -8,7 +8,7 @@
 <div class="container">
     <h1>Create User</h1>
 
-    <!--/*@thymesVar id="runescapeUser" type="be.ucll.runetracker.domain.RunescapeUser"*/-->
+    <!--/*@thymesVar id="runescapeUser" type="me.robinvdb.runetracker.domain.RunescapeUser"*/-->
     <form th:object="${runescapeUser}" method="post"
           th:action="@{'/user/' + ${runescapeUser.id} + '/edit'}">
         <div class="form-group row">

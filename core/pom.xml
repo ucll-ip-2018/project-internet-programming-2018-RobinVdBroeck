@@ -8,7 +8,7 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <parent>
-        <groupId>be.ucll</groupId>
+        <groupId>me.robinvdb</groupId>
         <artifactId>runetracker</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>

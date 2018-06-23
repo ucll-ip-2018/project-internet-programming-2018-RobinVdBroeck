@@ -17,8 +17,8 @@
         </tr>
         </thead>
         <tbody>
-        <!--/*@thymesVar id="datapoints" type="be.ucll.runetracker.domain.DataPoint[]"*/-->
-        <!--/*@thymesVar id="entry" type="be.ucll.runetracker.domain.DataPoint"*/-->
+        <!--/*@thymesVar id="datapoints" type="me.robinvdb.runetracker.domain.DataPoint[]"*/-->
+        <!--/*@thymesVar id="entry" type="me.robinvdb.runetracker.domain.DataPoint"*/-->
         <tr th:each="entry : ${datapoints}">
             <td th:text="${entry.user.email}">Email</td>
             <td th:text="${entry.formatedDateTime}">Datetime</td>

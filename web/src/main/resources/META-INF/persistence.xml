@@ -2,9 +2,9 @@
         xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="RuneTrackerPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-        <class>be.ucll.runetracker.domain.RunescapeUser</class>
-        <class>be.ucll.runetracker.domain.DataPoint</class>
-        <class>be.ucll.runetracker.domain.DataPointEntry</class>
+        <class>me.robinvdb.runetracker.domain.RunescapeUser</class>
+        <class>me.robinvdb.runetracker.domain.DataPoint</class>
+        <class>me.robinvdb.runetracker.domain.DataPointEntry</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://database:5432/runetracker"/>
